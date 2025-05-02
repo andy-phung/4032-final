@@ -1,0 +1,209 @@
+{
+    "Attacca": {
+        "release_year": 2021,
+        "songs": {
+            "To you": {
+                "members": ["Woozi"],
+                "streams": 89.2
+            },
+            "Rock with you": {
+                "members": ["Woozi", "Vernon", "Joshua"],
+                "streams": 198.9 
+            },
+            "Crush": {
+                "members": ["Woozi", "Vernon"],
+                "streams": 49.1
+            },
+            "PANG!": {
+                "members": ["Woozi", "Hoshi", "Dino"],
+                "streams": 20.3
+            },
+            "Imperfect love": {
+                "members": ["Woozi"],
+                "streams": 41.6
+            },
+            "I can't run away": {
+                "members": ["S.Coups", "Wonwoo", "Mingyu", "Vernon", "Woozi"],
+                "streams": 25.6
+            },
+            "2 MINUS 1": {
+                "members": ["Joshua", "Vernon"],
+                "streams": 38.6
+            }
+        }
+    },
+    "Face The Sun": {
+        "release_year": 2022,
+        "songs": {
+            "Darl+ing": {
+                "members": ["Woozi"],
+                "streams": 180
+            },
+            "HOT": {
+                "members": ["Woozi"],
+                "streams": 256
+            },
+            "DON QUIXOTE": {
+                "members": ["Woozi", "Wonwoo"],
+                "streams": 79
+            },
+            "March": {
+                "members": ["Woozi"],
+                "streams": 38
+            },
+            "Domino": {
+                "members": ["Woozi", "Mingyu"],
+                "streams": 24
+            },
+            "Shadow": {
+                "members": ["Woozi", "Dino"],
+                "streams": 78
+            },
+            "'bout you": {
+                "members": ["Woozi"],
+                "streams": 32
+            },
+            "IF you leave me": {
+                "members": ["Woozi", "S.Coups"],
+                "streams": 28
+            },
+            "Ash": {
+                "members": ["Woozi", "Vernon"],
+                "streams": 30
+            }
+        }
+    },
+    "Sector 17": {
+        "release_year": 2022,
+        "songs": {
+            "Circles": {
+                "members": ["Woozi"],
+                "streams": 44.8
+            },
+            "_World": {
+                "members": ["Woozi", "Vernon", "S.Coups"],
+                "streams": 134.1
+            },
+            "Fallin' Flower (Korean version)": {
+                "members": ["Woozi", "Dino"],
+                "streams": 25.2
+            },
+            "Cheers": {
+                "members": ["Woozi", "S.Coups", "Hoshi", "Vernon"],
+                "streams": 100.8
+            }
+        }
+    },
+    "FML": {
+        "release_year": 2023,
+        "songs": {
+            "F*ck My Life": {
+                "members": ["Woozi"],
+                "streams": 65
+            }, 
+            "Super": {
+                "members": ["Woozi", "S.Coups", "Vernon"],
+                "streams": 266
+            }, 
+            "Fire": {
+                "members": ["Woozi", "S.Coups", "Wonwoo", "Mingyu", "Vernon"],
+                "streams": 45
+            }, 
+            "I Don't Understand But I Luv U": {
+                "members": ["Woozi", "Hoshi", "Dino"],
+                "streams": 75
+            }, 
+            "Dust": {
+                "members": ["Woozi"],
+                "streams": 33
+            }, 
+            "April Shower": {
+                "members": ["Woozi"],
+                "streams": 31
+            }
+        }
+    },
+    "Seventeenth Heaven": {
+        "release_year": 2023,
+        "songs": {
+            "SOS (Prod. Marshmello)": {
+                "members": ["Woozi"],
+                "streams": 25.3
+            },
+            "God of Music": {
+                "members": ["Woozi", "S.Coups", "Mingyu", "Vernon"],
+                "streams": 108.7
+            },
+            "Diamond Days": {
+                "members": ["Woozi", "S.Coups", "Vernon"],
+                "streams": 15.4 
+            },
+            "Back 2 Back": {
+                "members": ["Woozi", "Hoshi"],
+                "streams": 14.3
+            },
+            "Monster": {
+                "members": ["Woozi", "Mingyu", "S.Coups", "Vernon", "Wonwoo"],
+                "streams": 26.7
+            },
+            "Yawn": {
+                "members": ["Woozi"],
+                "streams": 25.1
+            },
+            "Headliner": {
+                "members": ["Woozi"],
+                "streams": 20.3
+            }
+        }
+    },
+    "17 Is Right Here": {
+        "release_year": 2024,
+        "songs": {
+            "MAESTRO": {
+                "members": ["Woozi"],
+                "streams": 102.3
+            },
+            "LALALI": {
+                "members": ["S.Coups", "Wonwoo", "Mingyu", "Vernon", "Woozi"],
+                "streams": 36.9
+            },
+            "Spell": {
+                "members": ["Woozi", "The8", "Dino"],
+                "streams": 31.8
+            },
+            "Cheers to youth": {
+                "members": ["Woozi"],
+                "streams": 38.9
+            }
+        }
+    },
+    "Spill The Feels": {
+        "release_year": 2024,
+        "songs": {
+            "Eyes on You": {
+                "members": ["Woozi", "S.Coups", "Vernon"],
+                "streams": 14
+            },
+            "LOVE, MONEY, FAME": {
+                "members": ["Woozi", "Vernon"],
+                "streams": 65.2
+            },
+            "1 TO 13": {
+                "members": ["Woozi"],
+                "streams": 13.4
+            },
+            "Candy": {
+                "members": ["Woozi"],
+                "streams": 14.8
+            },
+            "Rain": {
+                "members": ["Woozi", "Hoshi", "Dino"],
+                "streams": 13.7
+            },
+            "Water": {
+                "members": ["Vernon", "S.Coups", "Wonwoo", "Mingyu"],
+                "streams": 20.7
+            }
+        }
+    }
+}

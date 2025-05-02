@@ -15,3 +15,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.album-transition {
+  transition: left 0.5s, top 0.5s, opacity 0.5s;
+}

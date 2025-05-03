@@ -9,6 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 
 code {
@@ -18,5 +19,21 @@ code {
 
 
 .album-transition {
-  transition: left 0.5s, top 0.5s, opacity 0.5s;
+  transition: left 0.5s, top 0.5s, opacity 0.5s, width 0.3s, height 0.3s;
+}
+
+@keyframes cd-fade-in-animation {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.cd-fade-in {
+  animation: 1s cd-fade-in-animation;
 }

@@ -101,9 +101,29 @@
     "Heng:garæ": {
         "release_year": 2020,
         "songs": {
-            "": {
-                "members": [],
-                "streams": 0
+            "Fearless": {
+                "members": ["Woozi", "Vernon"],
+                "streams": 24.2
+            },
+            "Left & Right": {
+                "members": ["Woozi", "Vernon"],
+                "streams": 150.5
+            },
+            "I Wish": {
+                "members": ["Woozi", "Wonwoo"],
+                "streams": 21.8
+            },
+            "My My": {
+                "members": ["Woozi", "Vernon", "S.Coups"],
+                "streams": 38.4
+            },
+            "Kidult": {
+                "members": ["Woozi", "Vernon", "S.Coups"],
+                "streams": 75.9
+            },
+            "Together": {
+                "members": ["Woozi", "S.Coups", "Hoshi", "Mingyu"],
+                "streams": 30.6
             }
         }
     },
@@ -198,7 +218,7 @@
             }
         }
     },
-    "Face The Sun": {
+    "Face the Sun": {
         "release_year": 2022,
         "songs": {
             "Darl+ing": {
@@ -343,7 +363,7 @@
             }
         }
     },
-    "Spill The Feels": {
+    "Spill the Feels": {
         "release_year": 2024,
         "songs": {
             "Eyes on You": {

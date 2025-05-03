@@ -21,6 +21,8 @@ const Album = (props) => {
     
     const set_state = () => {
         if(!isTransitioning) {
+            startTransition();
+
             if(is_selected) {
                 props.setSelectedAlbum("")
             } else {
@@ -46,10 +48,6 @@ const Album = (props) => {
         }
 
     }
-
-    useEffect(() => {
-        console.log(isTransitioning);
-    }, [isTransitioning])
 
     useEffect(() => {
         //console.log("recalc");
@@ -89,11 +87,13 @@ const Album = (props) => {
     }, []);
 
     const mouseEnterStart = () => {
+        if((props.focusedAlbum != props.name) && !isTransitioning) {
+            startTransition();
+        }
+
         props.setFocusedAlbum(props.name);
         
-        if(!(album_selected && is_selected)) {
-            startTransition();
-        }   
+        
     }
 
     const startTransition = () => {
@@ -104,7 +104,7 @@ const Album = (props) => {
     return (
         <>
             <img src={`/images/albums/${parsed_album_name}.jpg`} ref={self_ref} onClick={set_state} onMouseEnter={mouseEnterStart} onMouseLeave={reset_transition} style={{top: album_selected && is_selected ? `${targetTop}px` : "0px", left: album_selected && is_selected ? `${targetLeft}px` : "0px", height: album_selected && is_selected ? "500px" : `${full_width}px`}} className={`text-white mr-[5px] ${album_selected && is_selected ? "w-[500px]" : (props.focusedAlbum == props.name ? `w-[${full_width}px]` : "w-[30px]")} object-cover object-left relative album-transition hover:cursor-pointer ${album_selected && !is_selected ? "opacity-0 pointer-events-none" : "opacity-100"}`}/>
-            
+
         </>
     )
 }

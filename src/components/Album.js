@@ -4,7 +4,7 @@ import '../index.css';
 
 const Album = (props) => {
     let parsed_album_name = props.name.replaceAll(':', '');
-    let full_width = 175;
+    let full_width = 190;
 
     let album_selected = props.selectedAlbum != "";
     let is_selected = props.selectedAlbum == props.name;
@@ -23,12 +23,13 @@ const Album = (props) => {
         if(!isTransitioning) {
             startTransition();
 
-            console.log("hello??");
+            //console.log("hello??");
             
             if(is_selected) {
-                props.setSelectedAlbum("")
+                props.setSelectedAlbum("");
+                props.setMemberSelected("");
             } else {
-                props.setSelectedAlbum(props.name)
+                props.setSelectedAlbum(props.name);
             }
         }
     }
@@ -53,7 +54,7 @@ const Album = (props) => {
 
     useEffect(() => {
         //console.log("recalc");
-        const desiredTop = 590; // px from top of viewport
+        const desiredTop = 605; // px from top of viewport
     
         const element = self_ref.current;
         if (!element) return;
@@ -75,7 +76,7 @@ const Album = (props) => {
 
         const handleTransitionEnd = () => {
             setIsTransitioning(false);
-            console.log("end transition");
+            //console.log("end transition");
         };
         
         if (element) {
@@ -101,15 +102,15 @@ const Album = (props) => {
 
     const startTransition = () => {
         setIsTransitioning(true);
-        console.log("start transition");
+        //console.log("start transition");
         
       };
 
     // replace ${full_width} if u wanna change the album sizes
     return (
         <div className="relative">
-            <img src={`/images/albums/${parsed_album_name}.jpg`} ref={self_ref} onClick={set_state} onMouseEnter={mouseEnterStart} onMouseLeave={reset_transition} style={{top: album_selected && is_selected ? `${targetTop}px` : "0px", left: album_selected && is_selected ? `${targetLeft}px` : "0px", height: album_selected && is_selected ? "550px" : `${full_width}px`}} className={`z-[2] relative mr-[5px] ${album_selected && is_selected ? "w-[550px]" : (props.focusedAlbum == props.name ? `w-[${full_width}px]` : "w-[30px]")} object-cover object-left relative album-transition hover:cursor-pointer ${album_selected && !is_selected ? "opacity-0 pointer-events-none" : "opacity-100"}`}/>
-            <div className={`text-white absolute left-0 right-0 ${props.focusedAlbum == props.name && !(album_selected && is_selected)? "hidden" : "hidden"}`}>
+            <img src={`/images/albums/${parsed_album_name}.jpg`} ref={self_ref} onClick={set_state} onMouseEnter={mouseEnterStart} onMouseLeave={reset_transition} style={{top: album_selected && is_selected ? `${targetTop}px` : "0px", left: album_selected && is_selected ? `${targetLeft}px` : "0px", height: album_selected && is_selected ? "600px" : `190px`}} className={`z-[2] relative ml-[2px] mr-[2px] ${album_selected && is_selected ? "w-[600px]" : (props.focusedAlbum == props.name ? `w-[190px]` : "w-[30px]")} object-cover object-left relative album-transition hover:cursor-pointer ${album_selected && !is_selected ? "opacity-0 pointer-events-none" : "opacity-100"}`}/>
+            <div className={`text-white absolute mt-[2px] text-nowrap overflow-hidden text-center left-0 right-0 ${props.focusedAlbum == props.name && !(album_selected && is_selected)? "" : "hidden"}`}>
                 {props.name} ({props.year})
             </div>
         </div>

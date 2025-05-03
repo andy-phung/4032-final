@@ -33,7 +33,7 @@ const CD = (props) => {
     let marks = [];
     let x;
     let y;
-    let cd_size = props.streams*2.25;
+    let cd_size = props.streams;
     let mark_size = 15;
 
     const map_to_angle = (number) => {
@@ -56,11 +56,11 @@ const CD = (props) => {
         x = cd_size/2 * Math.cos(map_to_angle(member_mapping[member]) + Math.PI/2);
         y = cd_size/2 * Math.sin(map_to_angle(member_mapping[member]) + Math.PI/2);
         
-        marks.push(<div onMouseDown={() => {select_member(member)}} onMouseEnter={(e) => {props.setMemberFocused(member); props.setClientX(e.target.getBoundingClientRect().left); props.setClientY(e.target.getBoundingClientRect().top)}} onMouseLeave={() => {props.setMemberFocused("")}} style={{height: mark_size, width: mark_size, left: cd_size/2 - mark_size/2 + x, top: cd_size/2 - mark_size/2 - y}} className={`hover:cursor-pointer absolute bg-gray-600 rounded-[50%]`}></div>)
+        marks.push(<div onMouseDown={() => {select_member(member)}} onMouseEnter={(e) => {props.setMemberFocused(member); props.setClientX(e.target.getBoundingClientRect().left); props.setClientY(e.target.getBoundingClientRect().top)}} onMouseLeave={() => {props.setMemberFocused("")}} style={{height: mark_size, width: mark_size, left: cd_size/2 - mark_size/2 + x, top: cd_size/2 - mark_size/2 - y}} className={`${props.memberSelected != "" && !containsMemberSelected ? "pointer-events-none": "hover:cursor-pointer"} absolute bg-gray-600 rounded-[50%]`}></div>)
     }
 
     return (
-        <div style={{width: cd_size, height: cd_size}} className={`bg-gray-300 member-select-transition cd-fade-in mr-2 relative rounded-[50%] ${props.memberSelected != "" && !containsMemberSelected ? "opacity-50" : "opacity-100"}`}>
+        <div style={{width: cd_size, height: cd_size}} className={`bg-gray-300 member-select-transition cd-fade-in mr-2 relative rounded-[50%] ${props.memberSelected != "" && !containsMemberSelected ? "opacity-40" : "opacity-100"}`}>
             {marks}
         </div>
     )

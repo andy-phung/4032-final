@@ -111,27 +111,27 @@
         "release_year": 2020,
         "songs": {
             "HOME;RUN": {
-                "members": [],
+                "members": ["Woozi", "Vernon", "Seungkwan"],
                 "streams": 78.8
             },
             "Do Re Mi": {
-                "members": [],
+                "members": ["Seungkwan", "Vernon", "Dino", "Woozi"],
                 "streams": 22.6
             },
             "HEY BUDDY": {
-                "members": [],
+                "members": ["The8", "Mingyu", "DK", "Woozi"],
                 "streams": 14.9
             },
             "Light a Flame": {
-                "members": [],
+                "members": ["Hoshi", "Wonwoo", "Woozi"],
                 "streams": 57.9
             },
             "AH! LOVE": {
-                "members": [],
+                "members": ["S.Coups", "Jeonghan", "Joshua", "Woozi"],
                 "streams": 18
             },
             "All My Love": {
-                "members": [],
+                "members": ["Woozi", "Seungkwan", "Vernon"],
                 "streams": 31.6
             }
         }

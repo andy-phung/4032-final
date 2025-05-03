@@ -21,7 +21,7 @@ function App() {
 
   if (selectedAlbum != "") {
     for (const song in data[selectedAlbum]["songs"]) {
-      songs.push(<CD/>)
+      songs.push(<CD streams={data[selectedAlbum]["songs"][song]["streams"]} members={data[selectedAlbum]["songs"][song]["members"]}/>)
     }
   }
 
@@ -29,7 +29,7 @@ function App() {
     <div className="bg-black w-screen h-screen">
       <div className="relative w-screen h-screen flex justify-center items-center flex-col">
         {albums}
-        <div className={`absolute flex ${selectedAlbum != "" ? "" : "hidden"}`}>
+        <div className={`absolute flex items-center ${selectedAlbum != "" ? "" : "hidden"}`}>
           {songs}
         </div>
       </div>

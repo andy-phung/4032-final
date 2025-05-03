@@ -19,21 +19,32 @@ code {
 
 
 .album-transition {
-  transition: left 0.5s, top 0.5s, opacity 0.5s, width 0.3s, height 0.3s;
+  transition: left 0.5s, top 0.5s, opacity 0.5s, width 0.4s, height 0.4s;
+}
+
+.photocard-transition {
+  transition: opacity 0.25s;
+}
+
+.member-select-transition {
+  transition: opacity 0.25s;
 }
 
 @keyframes cd-fade-in-animation {
   0% {
     opacity: 0;
+    top: 125px
   }
   50% {
     opacity: 0;
+    top: 125px;
   }
   100% {
     opacity: 1;
+    top: 0px;
   }
 }
 
 .cd-fade-in {
-  animation: 1s cd-fade-in-animation;
+  animation: 1s cd-fade-in-animation ease-out;
 }

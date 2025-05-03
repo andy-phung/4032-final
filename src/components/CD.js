@@ -4,7 +4,7 @@ import '../index.css';
 
 const CD = (props) => {
 
-    const mapping = {
+    const member_mapping = {
         "S.Coups": 0,
         "Jeonghan": 1,
         "Joshua": 2,
@@ -21,13 +21,23 @@ const CD = (props) => {
     }
 
     let marks = [];
+    let x;
+    let y;
+    let mark_size = 10;
 
-    for (const member in props.members) {
-        marks.push(<div className="w-[20px] h-[20px] bg-gray-600 rounded-[50%]"></div>)
+    const map_to_angle = (number) => {
+        return ((2*Math.PI)/13)*number
+    }
+
+    for (const member of props.members) {
+        x = props.streams/2 * Math.cos(map_to_angle(member_mapping[member]) + Math.PI/2);
+        y = props.streams/2 * Math.sin(map_to_angle(member_mapping[member]) + Math.PI/2);
+        
+        marks.push(<div style={{height: mark_size, width: mark_size, left: props.streams/2 - mark_size/2 + x, top: props.streams/2 - mark_size/2 - y}} className="absolute bg-gray-600 rounded-[50%]"></div>)
     }
 
     return (
-        <div style={{width: props.streams, height: props.streams}} className={`bg-gray-300 mr-1 rounded-[50%]`}>
+        <div style={{width: props.streams, height: props.streams}} className={`bg-gray-300 mr-1 relative rounded-[50%]`}>
             {marks}
         </div>
     )

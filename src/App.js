@@ -9,6 +9,10 @@ import Album from "./components/Album.js";
 import CD from "./components/CD.js";
 import Photocard from "./components/Photocard.js";
 
+const radians_to_degrees = (radians) => {
+  return radians * (180 / Math.PI)
+}
+
 const offset_rotate_around = (angle, spacing, prev_cd_radius, cd_radius, prev_cd_offsets) => { // angle in degrees, spacing in px
   let cx1, cy1, distance, offset_x, offset_y;
 
@@ -25,10 +29,14 @@ const offset_rotate_around = (angle, spacing, prev_cd_radius, cd_radius, prev_cd
 }
 
 
-const calculate_offsets = (cd_radii) => { // obj of cd sizes
+const calculate_offsets = (cd_radii, spacing) => { // obj of cd sizes
   let cd_offsets = [];
   let new_offsets;
   let going_ccw;
+  let prev_cd_radius;
+  let prev_cd_inner_radius;
+  let cd_radius;
+  let angle;
 
   // set initial direction
   if(Object.keys(cd_radii).length > 1) {
@@ -41,15 +49,34 @@ const calculate_offsets = (cd_radii) => { // obj of cd sizes
     going_ccw = true;
   }
 
+
+
   Object.keys(cd_radii).forEach((song, idx) => {
     if (idx != 0) {
-      if (going_ccw) {
-
-      } else {
-
-      }
+      prev_cd_radius = cd_radii[Object.keys(cd_radii)[idx - 1]];
+      prev_cd_inner_radius = 0.337 * prev_cd_radius;
+      cd_radius = cd_radii[song];
       
-      new_offsets = offset_rotate_around(20, 15, cd_radii[Object.keys(cd_radii)[idx - 1]], cd_radii[song], [cd_offsets[Object.keys(cd_radii)[idx - 1]][0], cd_offsets[Object.keys(cd_radii)[idx - 1]][1]]);
+
+      // doesn't match up w inner circle.. sometimes too much sometimes too little
+      // also overlaps sometimes
+      angle = radians_to_degrees(Math.acos((prev_cd_radius + prev_cd_inner_radius)/(prev_cd_radius + spacing + cd_radius)));
+      console.log(`angle ${angle}, going ${going_ccw ? "ccw" : "cw"}`);
+
+      if (idx == 1) {
+        angle -= 35;
+      } else if (idx == Object.keys(cd_radii).length - 1) {
+        angle -= 30;
+      }
+
+      if (going_ccw) {
+        new_offsets = offset_rotate_around(360 - angle, spacing, prev_cd_radius, cd_radius, [cd_offsets[Object.keys(cd_radii)[idx - 1]][0], cd_offsets[Object.keys(cd_radii)[idx - 1]][1]]);
+      } else {
+        new_offsets = offset_rotate_around(angle, spacing, prev_cd_radius, cd_radius, [cd_offsets[Object.keys(cd_radii)[idx - 1]][0], cd_offsets[Object.keys(cd_radii)[idx - 1]][1]]);
+      }
+
+      going_ccw = !going_ccw;
+
       cd_offsets[song] = [new_offsets[0], new_offsets[1]];
     } 
     else {
@@ -131,7 +158,7 @@ function App() {
       cd_radii[song] = (scale*process_streams(data[selectedAlbum]["songs"][song]["streams"]))/2;
     }
 
-    cd_offsets = calculate_offsets(cd_radii);
+    cd_offsets = calculate_offsets(cd_radii, 15);
 
 
     for (const song in data[selectedAlbum]["songs"]) {

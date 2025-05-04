@@ -6,6 +6,7 @@ import DonutSector from "./DonutSector";
 
 const CD = (props) => {
     const [containsMemberSelected, setContainsMemberSelected] = useState(false);
+    const [CDSelected, setCDSelected] = useState(false);
 
     useEffect(() => {
         if (props.members.includes(props.memberSelected)) {
@@ -32,12 +33,15 @@ const CD = (props) => {
         "Dino": 12
     }
 
+    function mapRange(value, oldMin, oldMax, newMin, newMax) {
+        return ((value - oldMin) / (oldMax - oldMin)) * (newMax - newMin) + newMin;
+      }
+
     let marks = [];
     let x;
     let y;
     let cd_size = props.streams; // diameter ?
-    let mark_size = 15;
-    let mark_stroke_width = 3.5; // needs to be function of cd_size
+    let mark_stroke_width = mapRange(cd_size, 0, 266, 2, 5.5); // needs to be function of cd_size
     let sweep_angle = 360/13 - (mark_stroke_width/(cd_size/2)) * (180/Math.PI); // based on 13 members and degrees, but needs to be function of mark_stroke_width
 
     const map_to_angle_radians = (number) => {
@@ -69,8 +73,18 @@ const CD = (props) => {
 
     // generate left and top offsets in app.js?
 
+    const cd_mouse_down = (e) => {
+        e.target.classList.remove("bg-gray-300"); // this should work?
+
+        // if(CDSelected) {
+        //     setCDSelected(false);
+        // } else {
+        //     setCDSelected(true);
+        // }
+    };
+
     return (
-        <div style={{width: cd_size, height: cd_size}} className={`bg-gray-300 member-select-transition cd-fade-in mr-2 relative rounded-[50%] ${props.memberSelected != "" && !containsMemberSelected ? "opacity-40" : "opacity-100"}`}>
+        <div style={{width: cd_size, height: cd_size}} className={`${CDSelected ? "cd-spin" : ""} bg-gray-300 member-select-transition mr-2 cd-fade-in relative rounded-[50%] ${props.memberSelected != "" && !containsMemberSelected ? "opacity-40" : "opacity-100"}`} onMouseDown={cd_mouse_down}>
             <svg className='absolute' width={cd_size/2 * 2} height={cd_size/2 * 2} viewBox={`${-cd_size/2} ${-cd_size/2} ${cd_size/2 * 2} ${cd_size/2 * 2}`}>
                 {marks}
             </svg>

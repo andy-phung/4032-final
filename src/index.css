@@ -48,3 +48,16 @@ code {
 .cd-fade-in {
   animation: 1s cd-fade-in-animation ease-out;
 }
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.cd-spin {
+  animation: rotation 6s infinite linear;
+}

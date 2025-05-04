@@ -8,13 +8,23 @@ const polarToCartesian = (cx, cy, r, angleInDegrees) => {
   };
 };
 
-const DonutSector = ({ innerRadius, outerRadius, angle, fill = '#a67c52', stroke = 'black' }) => {
-  const startOuter = polarToCartesian(0, 0, outerRadius, 0);
-  const endOuter = polarToCartesian(0, 0, outerRadius, angle);
-  const startInner = polarToCartesian(0, 0, innerRadius, angle);
-  const endInner = polarToCartesian(0, 0, innerRadius, 0);
+const DonutSector = ({
+  innerRadius,
+  outerRadius,
+  sweepAngle,
+  startAngle = 0,
+  fill = '#6e6e6e',
+  stroke = 'black',
+  stroke_width = 3.5
+}) => {
+  const endAngle = startAngle + sweepAngle;
 
-  const largeArcFlag = angle > 180 ? 1 : 0;
+  const startOuter = polarToCartesian(0, 0, outerRadius, startAngle);
+  const endOuter = polarToCartesian(0, 0, outerRadius, endAngle);
+  const startInner = polarToCartesian(0, 0, innerRadius, endAngle);
+  const endInner = polarToCartesian(0, 0, innerRadius, startAngle);
+
+  const largeArcFlag = sweepAngle > 180 ? 1 : 0;
 
   const pathData = [
     `M ${startOuter.x} ${startOuter.y}`,
@@ -28,7 +38,8 @@ const DonutSector = ({ innerRadius, outerRadius, angle, fill = '#a67c52', stroke
 
   return (
     <svg width={size} height={size} viewBox={`${-outerRadius} ${-outerRadius} ${size} ${size}`}>
-      <path d={pathData} fill={fill} stroke={stroke} />
+      <path d={pathData} fill={fill} stroke={stroke} stroke-width={stroke_width*2} paintOrder={"stroke"} strokeLinejoin='round'
+      className='hover:cursor-pointer'/>
     </svg>
   );
 };

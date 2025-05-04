@@ -35,11 +35,17 @@ const CD = (props) => {
     let marks = [];
     let x;
     let y;
-    let cd_size = props.streams;
+    let cd_size = props.streams; // diameter ?
     let mark_size = 15;
+    let mark_stroke_width = 3.5; // needs to be function of cd_size
+    let sweep_angle = 360/13 - (mark_stroke_width/(cd_size/2)) * (180/Math.PI); // based on 13 members and degrees, but needs to be function of mark_stroke_width
 
-    const map_to_angle = (number) => {
-        return ((2*Math.PI)/13)*number
+    const map_to_angle_radians = (number) => {
+        return (((2*Math.PI)/13)*number + Math.PI/2); // was for circular marks
+    }
+
+    const map_to_angle_degrees = (number) => {
+        return 360 - ((((2*Math.PI)/13)*number) * (180/Math.PI) + sweep_angle/2) // // convert to degrees -> subtract half of sweep angle
     }
 
     const select_member = (member) => {
@@ -55,13 +61,15 @@ const CD = (props) => {
     }
 
     for (const member of props.members) {
-        x = cd_size/2 * Math.cos(map_to_angle(member_mapping[member]) + Math.PI/2);
-        y = cd_size/2 * Math.sin(map_to_angle(member_mapping[member]) + Math.PI/2);
+        x = cd_size/2 * Math.cos(map_to_angle_radians(member_mapping[member]));
+        y = cd_size/2 * Math.sin(map_to_angle_radians(member_mapping[member]));
 
-        marks.push(<div onMouseDown={() => {select_member(member)}} onMouseEnter={(e) => {props.setMemberFocused(member); props.setClientX(e.target.getBoundingClientRect().left); props.setClientY(e.target.getBoundingClientRect().top)}} onMouseLeave={() => {props.setMemberFocused("")}} style={{height: mark_size, width: mark_size, left: cd_size/2 - mark_size/2 + x, top: cd_size/2 - mark_size/2 - y}} className={`${props.memberSelected != "" && !containsMemberSelected ? "pointer-events-none": "hover:cursor-pointer"} absolute bg-gray-600 border-red-500 border-2 rounded-[50%]`}>
-            <DonutSector innerRadius={10} outerRadius={20} angle={60}/>
-        </div>)
+        marks.push(<div className="absolute"><DonutSector innerRadius={cd_size/2 - cd_size/11} outerRadius={cd_size/2} sweepAngle={sweep_angle} startAngle={map_to_angle_degrees(member_mapping[member])} stroke_width={mark_stroke_width}/></div>);
+
+        //marks.push(<div onMouseDown={() => {select_member(member)}} onMouseEnter={(e) => {props.setMemberFocused(member); props.setClientX(e.target.getBoundingClientRect().left); props.setClientY(e.target.getBoundingClientRect().top)}} onMouseLeave={() => {props.setMemberFocused("")}} style={{height: mark_size, width: mark_size, left: cd_size/2 - mark_size/2 + x, top: cd_size/2 - mark_size/2 - y}} className={`${props.memberSelected != "" && !containsMemberSelected ? "pointer-events-none": "hover:cursor-pointer"} absolute bg-gray-600 border-red-500 border-2 rounded-[50%]`}></div>)
     }
+
+    // generate left and top offsets in app.js?
 
     return (
         <div style={{width: cd_size, height: cd_size}} className={`bg-gray-300 member-select-transition cd-fade-in mr-2 relative rounded-[50%] ${props.memberSelected != "" && !containsMemberSelected ? "opacity-40" : "opacity-100"}`}>

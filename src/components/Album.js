@@ -109,7 +109,7 @@ const Album = (props) => {
     // replace ${full_width} if u wanna change the album sizes
     return (
         <div className="relative">
-            <img src={`/images/albums/${parsed_album_name}.jpg`} ref={self_ref} onClick={set_state} onMouseEnter={mouseEnterStart} onMouseLeave={reset_transition} style={{top: album_selected && is_selected ? `${targetTop}px` : "0px", left: album_selected && is_selected ? `${targetLeft}px` : "0px", height: album_selected && is_selected ? "600px" : `190px`}} className={`z-[2] relative ml-[2px] mr-[2px] ${album_selected && is_selected ? "w-[600px]" : (props.focusedAlbum == props.name ? `w-[190px]` : "w-[30px]")} object-cover object-left relative album-transition hover:cursor-pointer ${album_selected && !is_selected ? "opacity-0 pointer-events-none" : "opacity-100"}`}/>
+            <img src={`/images/albums/An Ode.jpg`} ref={self_ref} onClick={set_state} onMouseEnter={mouseEnterStart} onMouseLeave={reset_transition} style={{top: album_selected && is_selected ? `${targetTop}px` : "0px", left: album_selected && is_selected ? `${targetLeft}px` : "0px", height: album_selected && is_selected ? "600px" : `190px`}} className={`z-[2] relative ml-[2px] mr-[2px] ${album_selected && is_selected ? "w-[600px]" : (props.focusedAlbum == props.name ? `w-[190px]` : "w-[30px]")} object-cover object-left relative album-transition hover:cursor-pointer ${album_selected && !is_selected ? "opacity-0 pointer-events-none" : "opacity-100"}`}/>
             <div className={`text-white absolute mt-[2px] text-nowrap overflow-hidden text-center left-0 right-0 ${props.focusedAlbum == props.name && !(album_selected && is_selected)? "" : "hidden"}`}>
                 {props.name} ({props.year})
             </div>

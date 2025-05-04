@@ -2,6 +2,8 @@ import React, { useRef, useState, useEffect }  from "react";
 import { Link } from "react-router";
 import '../index.css';
 
+import DonutSector from "./DonutSector";
+
 const CD = (props) => {
     const [containsMemberSelected, setContainsMemberSelected] = useState(false);
 
@@ -55,8 +57,10 @@ const CD = (props) => {
     for (const member of props.members) {
         x = cd_size/2 * Math.cos(map_to_angle(member_mapping[member]) + Math.PI/2);
         y = cd_size/2 * Math.sin(map_to_angle(member_mapping[member]) + Math.PI/2);
-        
-        marks.push(<div onMouseDown={() => {select_member(member)}} onMouseEnter={(e) => {props.setMemberFocused(member); props.setClientX(e.target.getBoundingClientRect().left); props.setClientY(e.target.getBoundingClientRect().top)}} onMouseLeave={() => {props.setMemberFocused("")}} style={{height: mark_size, width: mark_size, left: cd_size/2 - mark_size/2 + x, top: cd_size/2 - mark_size/2 - y}} className={`${props.memberSelected != "" && !containsMemberSelected ? "pointer-events-none": "hover:cursor-pointer"} absolute bg-gray-600 rounded-[50%]`}></div>)
+
+        marks.push(<div onMouseDown={() => {select_member(member)}} onMouseEnter={(e) => {props.setMemberFocused(member); props.setClientX(e.target.getBoundingClientRect().left); props.setClientY(e.target.getBoundingClientRect().top)}} onMouseLeave={() => {props.setMemberFocused("")}} style={{height: mark_size, width: mark_size, left: cd_size/2 - mark_size/2 + x, top: cd_size/2 - mark_size/2 - y}} className={`${props.memberSelected != "" && !containsMemberSelected ? "pointer-events-none": "hover:cursor-pointer"} absolute bg-gray-600 border-red-500 border-2 rounded-[50%]`}>
+            <DonutSector innerRadius={10} outerRadius={20} angle={60}/>
+        </div>)
     }
 
     return (

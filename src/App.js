@@ -28,27 +28,45 @@ function App() {
   }
 
   let songs = [];
-  let scale = 23;
+  let scale = 26;
+  
   const process_streams = (streams) => {
     //return 1.65*3*Math.pow(streams, 0.54); // fixes size relative to each other, kinda
     //return 2.25*streams;
     let output = streams;
-    if (streams > 100) {
-      // output = 2*23*Math.pow((streams/2), 0.2);
-      //console.log(`called: ${streams} -> ${output}`);
-    } else if (streams < 38) {
-      //output = 20 + Math.pow(streams, 0.85);
-      // output = 10 + Math.pow(streams, 0.98);
-    }
+    // if (streams > 100) {
+    //   // output = 2*23*Math.pow((streams/2), 0.2);
+    //   //console.log(`called: ${streams} -> ${output}`);
+    // } else if (streams < 38) {
+    //   //output = 20 + Math.pow(streams, 0.85);
+    //   // output = 10 + Math.pow(streams, 0.98);
+    // }
 
     output = Math.pow((streams/Math.PI), 0.5);
-    console.log(output);
+    //console.log(output);
 
     return output;
 
   };
 
+  let avg_streams = 0;
+
   if (selectedAlbum != "") {
+    avg_streams = 0;
+    for (const song in data[selectedAlbum]["songs"]) {
+      avg_streams += data[selectedAlbum]["songs"][song]["streams"];
+    }
+    avg_streams = avg_streams / Object.keys(data[selectedAlbum]["songs"]).length;
+
+
+    //console.log(`avg streams: ${parseInt(avg_streams)}`);
+
+    if (parseInt(avg_streams) <= 56) { // scaling up less streamed albums for visibility
+      console.log(".");
+      scale = 26*1.2;
+    } else {
+      scale = 26;
+    }
 
     for (const song in data[selectedAlbum]["songs"]) {
       songs.push(<CD streams={scale*process_streams(data[selectedAlbum]["songs"][song]["streams"])} members={data[selectedAlbum]["songs"][song]["members"]} setMemberFocused={setMemberFocused} setClientX={setClientX} setClientY={setClientY} setMemberSelected={setMemberSelected} memberSelected={memberSelected}/>)
@@ -59,7 +77,7 @@ function App() {
     <div className="bg-black w-screen h-screen">
       <div className="relative w-screen h-screen flex justify-center items-center">
         {albums}
-        <div className={`absolute top-[100px] flex items-center ${selectedAlbum != "" ? "" : "hidden"}`}>
+        <div className={`absolute top-[120px] flex items-center ${selectedAlbum != "" ? "" : "hidden"}`}>
           {songs}
         </div>
         <Photocard memberFocused={memberFocused} clientX={clientX} clientY={clientY}/>

@@ -9,6 +9,58 @@ import Album from "./components/Album.js";
 import CD from "./components/CD.js";
 import Photocard from "./components/Photocard.js";
 
+const offset_rotate_around = (angle, spacing, prev_cd_radius, cd_radius, prev_cd_offsets) => { // angle in degrees, spacing in px
+  let cx1, cy1, distance, offset_x, offset_y;
+
+  cx1 = -prev_cd_radius*2 + (prev_cd_radius - cd_radius) + prev_cd_offsets[0];
+  cy1 = prev_cd_offsets[1];
+  // console.log(`song -> cx1: ${cx1}, cy1: ${cy1}`);
+  distance = prev_cd_radius + cd_radius + spacing;
+
+  offset_x = cx1 + distance*Math.cos(angle * (Math.PI / 180));
+  offset_y = cy1 + distance*Math.sin(angle * (Math.PI / 180));
+
+  return [offset_x, offset_y];
+
+}
+
+
+const calculate_offsets = (cd_radii) => { // obj of cd sizes
+  let cd_offsets = [];
+  let new_offsets;
+  let going_ccw;
+
+  // set initial direction
+  if(Object.keys(cd_radii).length > 1) {
+    if(cd_radii[Object.keys(cd_radii)[0]] < cd_radii[Object.keys(cd_radii)[1]]) {
+      going_ccw = true;
+    } else {
+      going_ccw = false;
+    }
+  } else {
+    going_ccw = true;
+  }
+
+  Object.keys(cd_radii).forEach((song, idx) => {
+    if (idx != 0) {
+      if (going_ccw) {
+
+      } else {
+
+      }
+      
+      new_offsets = offset_rotate_around(20, 15, cd_radii[Object.keys(cd_radii)[idx - 1]], cd_radii[song], [cd_offsets[Object.keys(cd_radii)[idx - 1]][0], cd_offsets[Object.keys(cd_radii)[idx - 1]][1]]);
+      cd_offsets[song] = [new_offsets[0], new_offsets[1]];
+    } 
+    else {
+      cd_offsets[song] = [0, 0];
+    }
+  });
+
+  return cd_offsets;
+  
+}
+
 function App() {
   const [focusedAlbum, setFocusedAlbum] = useState("Face the Sun");
   const [selectedAlbum, setSelectedAlbum] = useState("");
@@ -27,6 +79,8 @@ function App() {
     albums.push(<Album selectedAlbum={selectedAlbum} setSelectedAlbum={setSelectedAlbum} focusedAlbum={focusedAlbum} setFocusedAlbum={setFocusedAlbum} name={`${album_name}`} year={data[album_name]["release_year"]} setMemberSelected={setMemberSelected}/>)
   }
 
+  let cd_radii = {};
+  let cd_offsets = {};
   let songs = [];
   let scale = 26;
   
@@ -52,6 +106,10 @@ function App() {
   let avg_streams = 0;
 
   if (selectedAlbum != "") {
+    songs = [];
+    cd_radii = [];
+    cd_offsets = [];
+
     avg_streams = 0;
     for (const song in data[selectedAlbum]["songs"]) {
       avg_streams += data[selectedAlbum]["songs"][song]["streams"];
@@ -67,9 +125,17 @@ function App() {
     } else {
       scale = 26;
     }
+    
+    // calculate offsets here
+    for (const song in data[selectedAlbum]["songs"]) {
+      cd_radii[song] = (scale*process_streams(data[selectedAlbum]["songs"][song]["streams"]))/2;
+    }
+
+    cd_offsets = calculate_offsets(cd_radii);
+
 
     for (const song in data[selectedAlbum]["songs"]) {
-      songs.push(<CD name={song} streams={scale*process_streams(data[selectedAlbum]["songs"][song]["streams"])} members={data[selectedAlbum]["songs"][song]["members"]} setMemberFocused={setMemberFocused} setClientX={setClientX} setClientY={setClientY} setMemberSelected={setMemberSelected} memberSelected={memberSelected}/>)
+      songs.push(<CD name={song} streams={scale*process_streams(data[selectedAlbum]["songs"][song]["streams"])} members={data[selectedAlbum]["songs"][song]["members"]} setMemberFocused={setMemberFocused} setClientX={setClientX} setClientY={setClientY} setMemberSelected={setMemberSelected} memberSelected={memberSelected} offset={cd_offsets[song]} z_index={Object.keys(cd_offsets).indexOf(song)}/>)
     }
   }
 
@@ -77,7 +143,7 @@ function App() {
     <div className="bg-black w-screen h-screen">
       <div className="relative w-screen h-screen flex justify-center items-center">
         {albums}
-        <div className={`absolute top-[120px] flex items-center ${selectedAlbum != "" ? "" : "hidden"}`}>
+        <div className={`absolute top-[120px] flex items-center justify-center border-red-400 border-2 ${selectedAlbum != "" ? "" : "hidden"}`}>
           {songs}
         </div>
         <Photocard memberFocused={memberFocused} clientX={clientX} clientY={clientY}/>

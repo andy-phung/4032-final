@@ -64,11 +64,14 @@ const CD = (props) => {
         // clicking on woozi doesn't do anything visually.. 
     }
 
+    let mark_thickness = cd_size/11;
+    // add +mark_thickness/2 to inner and outer radii for mark sticking out
+
     for (const member of props.members) {
         x = cd_size/2 * Math.cos(map_to_angle_radians(member_mapping[member]));
         y = cd_size/2 * Math.sin(map_to_angle_radians(member_mapping[member]));
 
-        marks.push(<DonutSector innerRadius={cd_size/2 - cd_size/11} outerRadius={cd_size/2} sweepAngle={sweep_angle} startAngle={map_to_angle_degrees(member_mapping[member])} stroke_width={mark_stroke_width} onMouseDown={() => {select_member(member)}} onMouseEnter={(e) => {props.setMemberFocused(member); props.setClientX(e.target.getBoundingClientRect().left - e.target.getBoundingClientRect().width); props.setClientY(e.target.getBoundingClientRect().top + e.target.getBoundingClientRect().height)}} onMouseLeave={() => {props.setMemberFocused("")}} className={`${props.memberSelected != "" && !containsMemberSelected ? "pointer-events-none": "hover:cursor-pointer"}`}/>);
+        marks.push(<DonutSector innerRadius={cd_size/2 - mark_thickness} outerRadius={cd_size/2} sweepAngle={sweep_angle} startAngle={map_to_angle_degrees(member_mapping[member])} stroke_width={mark_stroke_width} onMouseDown={() => {select_member(member)}} onMouseEnter={(e) => {props.setMemberFocused(member); props.setClientX(e.target.getBoundingClientRect().left - e.target.getBoundingClientRect().width); props.setClientY(e.target.getBoundingClientRect().top + e.target.getBoundingClientRect().height)}} onMouseLeave={() => {props.setMemberFocused("")}} className={`${props.memberSelected != "" && !containsMemberSelected ? "pointer-events-none": "hover:cursor-pointer"}`}/>);
     }
 
     // generate left and top offsets in app.js?
@@ -84,8 +87,11 @@ const CD = (props) => {
     };
 
     return (
-        <div style={{width: cd_size, height: cd_size}} className={`${CDSelected ? "cd-spin" : ""} bg-gray-300 member-select-transition mr-2 cd-fade-in relative rounded-[50%] ${props.memberSelected != "" && !containsMemberSelected ? "opacity-40" : "opacity-100"}`} onMouseDown={cd_mouse_down}>
-            <svg className='absolute' width={cd_size/2 * 2} height={cd_size/2 * 2} viewBox={`${-cd_size/2} ${-cd_size/2} ${cd_size/2 * 2} ${cd_size/2 * 2}`}>
+        <div style={{left: props.offset[0], top: props.offset[1], width: cd_size, height: cd_size}} className={`${CDSelected ? "cd-spin" : ""} bg-gray-300 border-red-400 border-2 member-select-transition cd-fade-in relative items-center justify-center rounded-[50%] flex ${props.memberSelected != "" && !containsMemberSelected ? "opacity-40" : "opacity-100"}`} onMouseDown={cd_mouse_down}>
+            <div style={{width: 0.337 * cd_size, height: 0.337 * cd_size}} className={`bg-gray-300 border-black border-2 rounded-[50%]`}>
+
+            </div>
+            <svg className='absolute overflow-visible' width={cd_size/2 * 2} height={cd_size/2 * 2} viewBox={`${-cd_size/2} ${-cd_size/2} ${cd_size/2 * 2} ${cd_size/2 * 2}`}>
                 {marks}
             </svg>
         </div>

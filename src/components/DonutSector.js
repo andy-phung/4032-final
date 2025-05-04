@@ -15,7 +15,11 @@ const DonutSector = ({
   startAngle = 0,
   fill = '#6e6e6e',
   stroke = 'black',
-  stroke_width = 3.5
+  stroke_width = 3.5,
+  onMouseDown,
+  onMouseEnter,
+  onMouseLeave,
+  className
 }) => {
   const endAngle = startAngle + sweepAngle;
 
@@ -34,13 +38,9 @@ const DonutSector = ({
     'Z',
   ].join(' ');
 
-  const size = outerRadius * 2;
-
   return (
-    <svg width={size} height={size} viewBox={`${-outerRadius} ${-outerRadius} ${size} ${size}`}>
       <path d={pathData} fill={fill} stroke={stroke} stroke-width={stroke_width*2} paintOrder={"stroke"} strokeLinejoin='round'
-      className='hover:cursor-pointer'/>
-    </svg>
+      onMouseDown={onMouseDown} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} className={className}/>
   );
 };
 

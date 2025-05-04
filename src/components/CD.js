@@ -64,16 +64,16 @@ const CD = (props) => {
         x = cd_size/2 * Math.cos(map_to_angle_radians(member_mapping[member]));
         y = cd_size/2 * Math.sin(map_to_angle_radians(member_mapping[member]));
 
-        marks.push(<div className="absolute"><DonutSector innerRadius={cd_size/2 - cd_size/11} outerRadius={cd_size/2} sweepAngle={sweep_angle} startAngle={map_to_angle_degrees(member_mapping[member])} stroke_width={mark_stroke_width}/></div>);
-
-        //marks.push(<div onMouseDown={() => {select_member(member)}} onMouseEnter={(e) => {props.setMemberFocused(member); props.setClientX(e.target.getBoundingClientRect().left); props.setClientY(e.target.getBoundingClientRect().top)}} onMouseLeave={() => {props.setMemberFocused("")}} style={{height: mark_size, width: mark_size, left: cd_size/2 - mark_size/2 + x, top: cd_size/2 - mark_size/2 - y}} className={`${props.memberSelected != "" && !containsMemberSelected ? "pointer-events-none": "hover:cursor-pointer"} absolute bg-gray-600 border-red-500 border-2 rounded-[50%]`}></div>)
+        marks.push(<DonutSector innerRadius={cd_size/2 - cd_size/11} outerRadius={cd_size/2} sweepAngle={sweep_angle} startAngle={map_to_angle_degrees(member_mapping[member])} stroke_width={mark_stroke_width} onMouseDown={() => {select_member(member)}} onMouseEnter={(e) => {props.setMemberFocused(member); props.setClientX(e.target.getBoundingClientRect().left - e.target.getBoundingClientRect().width); props.setClientY(e.target.getBoundingClientRect().top + e.target.getBoundingClientRect().height)}} onMouseLeave={() => {props.setMemberFocused("")}} className={`${props.memberSelected != "" && !containsMemberSelected ? "pointer-events-none": "hover:cursor-pointer"}`}/>);
     }
 
     // generate left and top offsets in app.js?
 
     return (
         <div style={{width: cd_size, height: cd_size}} className={`bg-gray-300 member-select-transition cd-fade-in mr-2 relative rounded-[50%] ${props.memberSelected != "" && !containsMemberSelected ? "opacity-40" : "opacity-100"}`}>
-            {marks}
+            <svg className='absolute' width={cd_size/2 * 2} height={cd_size/2 * 2} viewBox={`${-cd_size/2} ${-cd_size/2} ${cd_size/2 * 2} ${cd_size/2 * 2}`}>
+                {marks}
+            </svg>
         </div>
     )
 }

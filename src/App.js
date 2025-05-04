@@ -60,13 +60,13 @@ const calculate_offsets = (cd_radii, spacing) => { // obj of cd sizes
 
       // doesn't match up w inner circle.. sometimes too much sometimes too little
       // also overlaps sometimes
-      angle = radians_to_degrees(Math.acos((prev_cd_radius + prev_cd_inner_radius)/(prev_cd_radius + spacing + cd_radius)));
+      angle = radians_to_degrees(Math.acos((cd_radius + prev_cd_inner_radius)/(prev_cd_radius + spacing + cd_radius)));
       console.log(`angle ${angle}, going ${going_ccw ? "ccw" : "cw"}`);
 
       if (idx == 1) {
-        angle -= 35;
+        angle = angle*(2/3);
       } else if (idx == Object.keys(cd_radii).length - 1) {
-        angle -= 30;
+        angle = angle/2;
       }
 
       if (going_ccw) {

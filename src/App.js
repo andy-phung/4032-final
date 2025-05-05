@@ -12,11 +12,8 @@ import Photocard from "./components/Photocard.js";
 
 const get_bounding_box = (x_start, y_start, radii, offsets) => { // radii is an array
 
-  console.log(offsets);
-
   let first_cd_left = x_start;
   let first_cd_top = y_start;
-  console.log(`first cd top ${first_cd_top}`);
 
   // need to get all cd top left corners, apply the offsets to each one, and find which one is farthest down + which farthest right, then add their radii 
 
@@ -38,12 +35,9 @@ const get_bounding_box = (x_start, y_start, radii, offsets) => { // radii is an 
 
   let pos_w_offset;
 
-  console.log(cd_positions);
-
   for (let idx = 0; idx < cd_positions.length; idx++) {
     pos_w_offset = [cd_positions[idx][0] + offsets[idx][0], cd_positions[idx][1] + offsets[idx][1]];
     //pos_w_offset = [cd_positions[idx][0], cd_positions[idx][1]];
-    console.log(pos_w_offset);
 
     if(pos_w_offset[0] + radii[idx]*2 > farthest_right) {
       farthest_right = pos_w_offset[0] + radii[idx]*2;
@@ -66,8 +60,7 @@ const get_bounding_box = (x_start, y_start, radii, offsets) => { // radii is an 
   
   // let last_cd_right = first_cd_left + sum_arr(radii)*2 + offsets[offsets.length - 1][0];
   // let last_cd_bottom = first_cd_top + Math.max(...radii)*2 + offsets[offsets.length - 1][1];
-  console.log("end");
-
+  
   return [farthest_left, farthest_up, farthest_right-farthest_left, farthest_down-farthest_up, pos_w_offset[0], pos_w_offset[1]]
 
   // returns bounding box wrt to viewport
@@ -122,7 +115,7 @@ const offset_rotate_around = (angle, spacing, prev_cd_radius, cd_radius, prev_cd
 }
 
 
-const calculate_offsets = (cd_radii, spacing, window_width, top_offset) => { // obj of cd sizes
+const calculate_offsets = (cd_radii, spacing, window_width, window_height, top_offset) => { // obj of cd sizes
   let cd_offsets = [];
   let new_offsets;
   let going_ccw;
@@ -205,9 +198,10 @@ function App() {
   const [clientX, setClientX] = useState(0);
   const [clientY, setClientY] = useState(0);
   const [width, setWidth] = React.useState(typeof window !== 'undefined' ? window.innerWidth : 1280); // ..
+  const [height, setHeight] = React.useState(typeof window !== 'undefined' ? window.innerHeight : 720); // ..
 
   useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth);
+    const handleResize = () => {setWidth(window.innerWidth); setHeight(window.innerHeight); console.log("resize")}
     window.addEventListener('resize', handleResize);
     handleResize(); // Set initial width
     //console.log(width);
@@ -221,7 +215,7 @@ function App() {
   let albums = [];
 
   for (const album_name in data) {
-    albums.push(<Album selectedAlbum={selectedAlbum} setSelectedAlbum={setSelectedAlbum} focusedAlbum={focusedAlbum} setFocusedAlbum={setFocusedAlbum} name={`${album_name}`} year={data[album_name]["release_year"]} setMemberSelected={setMemberSelected}/>)
+    albums.push(<Album windowHeight={height} selectedAlbum={selectedAlbum} setSelectedAlbum={setSelectedAlbum} focusedAlbum={focusedAlbum} setFocusedAlbum={setFocusedAlbum} name={`${album_name}`} year={data[album_name]["release_year"]} setMemberSelected={setMemberSelected}/>)
   }
 
   let cd_radii = {};
@@ -268,7 +262,7 @@ function App() {
 
     if (parseInt(avg_streams) <= 56) { // scaling up less streamed albums for visibility
       //console.log(".");
-      scale = 26*1.2;
+      scale = 26*1.4;
     } else {
       scale = 26;
     }
@@ -278,14 +272,17 @@ function App() {
       cd_radii[song] = (scale*process_streams(data[selectedAlbum]["songs"][song]["streams"]))/2;
     }
 
-    [cd_offsets, bounding_box] = calculate_offsets(cd_radii, 15, width, cd_top_margin);
-    console.log(`bounding box ${bounding_box}`);
+    [cd_offsets, bounding_box] = calculate_offsets(cd_radii, 15, width, height, cd_top_margin);
 
-    //let x_center_offset = (width - bounding_box[2])/2 - bounding_box[0];
-    let x_center_offset = 0;
+    let x_center_offset = (width - bounding_box[2])/2 - bounding_box[0];
+    //let x_center_offset = 0;
+
+    let target_y_position = 0.35 * height;
+    let y_target_offset = target_y_position - bounding_box[1] - bounding_box[3]/2;
 
     for (const song in cd_offsets) {
       cd_offsets[song][0] += x_center_offset;
+      cd_offsets[song][1] += y_target_offset;
     }
 
     for (const song in data[selectedAlbum]["songs"]) {
@@ -295,10 +292,9 @@ function App() {
 
   return (
     <div className="bg-black w-screen h-screen">
-      <div className='absolute border-blue-400 border-2' style={{left: bounding_box[0], top: bounding_box[1], width: bounding_box[2], height: bounding_box[3]}}></div>
       <div className="relative w-screen h-screen flex justify-center items-center">
         {albums}
-        <div className={`absolute top-[120px] flex items-center justify-center border-red-400 border-2 ${selectedAlbum != "" ? "" : "hidden"}`}>
+        <div className={`absolute top-[120px] flex items-center justify-center ${selectedAlbum != "" ? "" : "hidden"}`}>
           {songs}
         </div>
         <Photocard memberFocused={memberFocused} clientX={clientX} clientY={clientY}/>

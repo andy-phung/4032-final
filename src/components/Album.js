@@ -4,7 +4,7 @@ import '../index.css';
 
 const Album = (props) => {
     let parsed_album_name = props.name.replaceAll(':', '');
-    let full_width = 190;
+    let full_width = 220;
 
     let album_selected = props.selectedAlbum != "";
     let is_selected = props.selectedAlbum == props.name;
@@ -32,6 +32,7 @@ const Album = (props) => {
                 props.setSelectedAlbum(props.name);
             }
         }
+
     }
 
     const reset_transition = () => {
@@ -54,7 +55,9 @@ const Album = (props) => {
 
     useEffect(() => {
         //console.log("recalc");
-        const desiredTop = 605; // px from top of viewport
+        //console.log(`window height ${props.windowHeight}`)
+        const desiredTop = props.windowHeight * 1.15; // px from top of viewport
+        // ?? why does this work
     
         const element = self_ref.current;
         if (!element) return;
@@ -109,7 +112,7 @@ const Album = (props) => {
     // replace ${full_width} if u wanna change the album sizes
     return (
         <div className="relative">
-            <img src={`/images/albums/An Ode.jpg`} ref={self_ref} onClick={set_state} onMouseEnter={mouseEnterStart} onMouseLeave={reset_transition} style={{top: album_selected && is_selected ? `${targetTop}px` : "0px", left: album_selected && is_selected ? `${targetLeft}px` : "0px", height: album_selected && is_selected ? "600px" : `190px`}} className={`z-[2] relative ml-[2px] mr-[2px] ${album_selected && is_selected ? "w-[600px]" : (props.focusedAlbum == props.name ? `w-[190px]` : "w-[30px]")} object-cover object-left relative album-transition hover:cursor-pointer ${album_selected && !is_selected ? "opacity-0 pointer-events-none" : "opacity-100"}`}/>
+            <img src={`/images/albums/An Ode_bigger.jpg`} ref={self_ref} onClick={set_state} onMouseEnter={mouseEnterStart} onMouseLeave={reset_transition} style={{top: album_selected && is_selected ? `${targetTop}px` : "0px", left: album_selected && is_selected ? `${targetLeft}px` : "0px", height: album_selected && is_selected ? "975px" : `220px`, width: album_selected && is_selected ? "975px" : (props.focusedAlbum == props.name ? `220px` : "30px")}} className={`${album_selected && is_selected ? "object-contain" : "object-cover"} z-[2] ml-[2px] mr-[2px] object-left relative album-transition hover:cursor-pointer ${album_selected && !is_selected ? "opacity-0 pointer-events-none" : "opacity-100"}`}/>
             <div className={`text-white absolute mt-[2px] text-nowrap overflow-hidden text-center left-0 right-0 ${props.focusedAlbum == props.name && !(album_selected && is_selected)? "" : "hidden"}`}>
                 {props.name} ({props.year})
             </div>

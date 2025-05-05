@@ -12,6 +12,7 @@ const CD = (props) => {
     const [containsMemberSelected, setContainsMemberSelected] = useState(false);
     const [CDSelected, setCDSelected] = useState(false);
     const [disableTransition, setDisableTransition] = useState(false);
+    const [fadeInAnimation, setFadeInAnimation] = useState(false);
 
     const animation_delay = props.delay;
     console.log(`delay ${props.delay}`);
@@ -93,12 +94,24 @@ const CD = (props) => {
             setCDSelected(true);
         }
     };
+
+    let border_thickness = 3;
+    if (cd_size > 180) {
+        border_thickness = 2.5
+    } else if (cd_size > 120) {
+        border_thickness = 2;
+    }
+    else {
+        border_thickness = 1.5;
+    }
     
 
     return (
-        <div style={{left: props.offset[0], top: parseInt(props.offset[1]), width: cd_size, height: cd_size, animation: disableTransition ? "" : `${1.1 + animation_delay}s cd-fade-in-animation ease-out`}} className={`${CDSelected ? "cd-spin" : ""} bg-gray-300 member-select-transition mt-0 relative items-center justify-center rounded-[50%] flex ${props.memberSelected != "" && !containsMemberSelected ? "opacity-40" : "opacity-100"}`}>
-            <div style={{width: 0.337 * cd_size, height: 0.337 * cd_size}} onMouseDown={cd_mouse_down} className={`bg-gray-300 z-[1] border-black border-2 rounded-[50%] hover:cursor-pointer`}>
+        <div style={{left: props.offset[0], top: parseInt(props.offset[1]), width: cd_size, height: cd_size, animation: disableTransition ? "" : props.selectedAlbum != "" ? `${1.1 + animation_delay}s cd-fade-in-animation ease-out` : `${1.1 + animation_delay}s cd-fade-out-animation ease-out`}} className={`${CDSelected ? "cd-spin" : ""} bg-gray-300 member-select-transition mt-0 relative items-center justify-center rounded-[50%] flex ${props.memberSelected != "" && !containsMemberSelected ? "opacity-40" : "opacity-100"}`}>
+            <div style={{width: 0.337 * cd_size, height: 0.337 * cd_size, borderWidth: border_thickness}} onMouseDown={cd_mouse_down} className={`bg-gray-300 z-[1] border-black rounded-[50%] hover:cursor-pointer flex items-center justify-center`}>
+                <div style={{width: 0.189 * cd_size, height: 0.189 * cd_size}} className="bg-black rounded-[50%]">
 
+                </div>
             </div>
             <svg className='absolute overflow-visible' width={cd_size/2 * 2} height={cd_size/2 * 2} viewBox={`${-cd_size/2} ${-cd_size/2} ${cd_size/2 * 2} ${cd_size/2 * 2}`}>
                 {marks}

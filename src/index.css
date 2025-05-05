@@ -45,6 +45,18 @@ code {
   }
 }
 
+@keyframes cd-fade-out-animation {
+  0% {
+    opacity: 1;
+    margin-top: 0px
+  }
+
+  100% {
+    opacity: 0;
+    margin-top: 400px;
+  }
+}
+
 .cd-fade-in {
   animation: 1s cd-fade-in-animation ease-out;
 }

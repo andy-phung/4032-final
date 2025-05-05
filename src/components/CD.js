@@ -4,10 +4,16 @@ import '../index.css';
 
 import DonutSector from "./DonutSector";
 
+function getRandomFloat(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
 const CD = (props) => {
     const [containsMemberSelected, setContainsMemberSelected] = useState(false);
     const [CDSelected, setCDSelected] = useState(false);
     const [disableTransition, setDisableTransition] = useState(false);
+
+    const animation_delay = getRandomFloat(-0.2, 0.1);
 
     useEffect(() => {
         if (props.members.includes(props.memberSelected)) {
@@ -86,9 +92,10 @@ const CD = (props) => {
             setCDSelected(true);
         }
     };
+    
 
     return (
-        <div style={{left: props.offset[0], top: props.offset[1], width: cd_size, height: cd_size}} className={`${CDSelected ? "cd-spin" : ""} bg-gray-300 member-select-transition ${disableTransition ? "" : "cd-fade-in"} relative items-center justify-center rounded-[50%] flex ${props.memberSelected != "" && !containsMemberSelected ? "opacity-40" : "opacity-100"}`}>
+        <div style={{left: props.offset[0], top: parseInt(props.offset[1]), width: cd_size, height: cd_size, animation: disableTransition ? "" : `${1.1 + animation_delay}s cd-fade-in-animation ease-out`}} className={`${CDSelected ? "cd-spin" : ""} bg-gray-300 member-select-transition mt-0 relative items-center justify-center rounded-[50%] flex ${props.memberSelected != "" && !containsMemberSelected ? "opacity-40" : "opacity-100"}`}>
             <div style={{width: 0.337 * cd_size, height: 0.337 * cd_size}} onMouseDown={cd_mouse_down} className={`bg-gray-300 z-[1] border-black border-2 rounded-[50%] hover:cursor-pointer`}>
 
             </div>

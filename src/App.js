@@ -60,7 +60,7 @@ const get_bounding_box = (x_start, y_start, radii, offsets) => { // radii is an 
   
   // let last_cd_right = first_cd_left + sum_arr(radii)*2 + offsets[offsets.length - 1][0];
   // let last_cd_bottom = first_cd_top + Math.max(...radii)*2 + offsets[offsets.length - 1][1];
-  
+
   return [farthest_left, farthest_up, farthest_right-farthest_left, farthest_down-farthest_up, pos_w_offset[0], pos_w_offset[1]]
 
   // returns bounding box wrt to viewport
@@ -260,9 +260,9 @@ function App() {
 
     //console.log(`avg streams: ${parseInt(avg_streams)}`);
 
-    if (parseInt(avg_streams) <= 56) { // scaling up less streamed albums for visibility
+    if (parseInt(avg_streams) <= 56 || selectedAlbum == "Sector 17") { // scaling up less streamed albums for visibility
       //console.log(".");
-      scale = 26*1.4;
+      scale = 26*1.6;
     } else {
       scale = 26;
     }
@@ -277,7 +277,7 @@ function App() {
     let x_center_offset = (width - bounding_box[2])/2 - bounding_box[0];
     //let x_center_offset = 0;
 
-    let target_y_position = 0.35 * height;
+    let target_y_position = 0.4 * height;
     let y_target_offset = target_y_position - bounding_box[1] - bounding_box[3]/2;
 
     for (const song in cd_offsets) {

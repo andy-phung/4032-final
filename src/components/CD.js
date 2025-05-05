@@ -13,7 +13,8 @@ const CD = (props) => {
     const [CDSelected, setCDSelected] = useState(false);
     const [disableTransition, setDisableTransition] = useState(false);
 
-    const animation_delay = getRandomFloat(-0.2, 0.1);
+    const animation_delay = props.delay;
+    console.log(`delay ${props.delay}`);
 
     useEffect(() => {
         if (props.members.includes(props.memberSelected)) {

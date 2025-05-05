@@ -9,6 +9,24 @@ import Album from "./components/Album.js";
 import CD from "./components/CD.js";
 import Photocard from "./components/Photocard.js";
 
+function generateEvenlySpacedValues(start, end, numValues) {
+  if (numValues < 1) {
+    throw new Error("numValues must be at least 1.");
+  }
+
+  if (numValues === 1) {
+    return [0.1];
+  }
+
+  const step = (end - start) / (numValues - 1);
+  const result = [];
+
+  for (let i = 0; i < numValues; i++) {
+    result.push(start + step * i);
+  }
+
+  return result;
+}
 
 const get_bounding_box = (x_start, y_start, radii, offsets) => { // radii is an array
 
@@ -35,8 +53,11 @@ const get_bounding_box = (x_start, y_start, radii, offsets) => { // radii is an 
 
   let pos_w_offset;
 
+  let cd_absolute_positions = [];
+
   for (let idx = 0; idx < cd_positions.length; idx++) {
     pos_w_offset = [cd_positions[idx][0] + offsets[idx][0], cd_positions[idx][1] + offsets[idx][1]];
+    cd_absolute_positions.push(pos_w_offset[0], pos_w_offset[1]);
     //pos_w_offset = [cd_positions[idx][0], cd_positions[idx][1]];
 
     if(pos_w_offset[0] + radii[idx]*2 > farthest_right) {
@@ -61,7 +82,7 @@ const get_bounding_box = (x_start, y_start, radii, offsets) => { // radii is an 
   // let last_cd_right = first_cd_left + sum_arr(radii)*2 + offsets[offsets.length - 1][0];
   // let last_cd_bottom = first_cd_top + Math.max(...radii)*2 + offsets[offsets.length - 1][1];
 
-  return [farthest_left, farthest_up, farthest_right-farthest_left, farthest_down-farthest_up, pos_w_offset[0], pos_w_offset[1]]
+  return [farthest_left, farthest_up, farthest_right-farthest_left, farthest_down-farthest_up, pos_w_offset[0], pos_w_offset[1], cd_absolute_positions]
 
   // returns bounding box wrt to viewport
 }
@@ -184,9 +205,11 @@ const calculate_offsets = (cd_radii, spacing, window_width, window_height, top_o
     }
   });
 
-  [bb_x, bb_y, bb_width, bb_height, last_cd_x, last_cd_y] = get_bounding_box((window_width - sum_obj_values(cd_radii)*2)/2, top_offset+Math.max(...Object.values(cd_radii))-cd_radii[Object.keys(cd_radii)[0]], Object.entries(cd_radii).slice(0,Object.keys(cd_radii).length).map(entry => entry[1]), Object.entries(cd_offsets).slice(0,Object.keys(cd_offsets).length).map(entry => entry[1]));
+  let cd_absolute_positions;
+  
+  [bb_x, bb_y, bb_width, bb_height, last_cd_x, last_cd_y, cd_absolute_positions] = get_bounding_box((window_width - sum_obj_values(cd_radii)*2)/2, top_offset+Math.max(...Object.values(cd_radii))-cd_radii[Object.keys(cd_radii)[0]], Object.entries(cd_radii).slice(0,Object.keys(cd_radii).length).map(entry => entry[1]), Object.entries(cd_offsets).slice(0,Object.keys(cd_offsets).length).map(entry => entry[1]));
 
-  return [cd_offsets, [bb_x, bb_y, bb_width, bb_height]]; // need to return bounding box too
+  return [cd_offsets, [bb_x, bb_y, bb_width, bb_height], cd_absolute_positions]; // need to return bounding box too
   
 }
 
@@ -268,11 +291,15 @@ function App() {
     }
     
     // calculate offsets here
+
+
     for (const song in data[selectedAlbum]["songs"]) {
       cd_radii[song] = (scale*process_streams(data[selectedAlbum]["songs"][song]["streams"]))/2;
     }
 
-    [cd_offsets, bounding_box] = calculate_offsets(cd_radii, 15, width, height, cd_top_margin);
+    let cd_absolute_positions; 
+
+    [cd_offsets, bounding_box, cd_absolute_positions] = calculate_offsets(cd_radii, 15, width, height, cd_top_margin);
 
     let x_center_offset = (width - bounding_box[2])/2 - bounding_box[0];
     //let x_center_offset = 0;
@@ -280,13 +307,35 @@ function App() {
     let target_y_position = 0.4 * height;
     let y_target_offset = target_y_position - bounding_box[1] - bounding_box[3]/2;
 
+
+
+    let animation_delay_stack = generateEvenlySpacedValues(-0.2, 0.1, Object.keys(cd_radii).length);
+    let animation_delays = {};
+
+    let cd_vertical_positions = {}
+
+    cd_absolute_positions.reverse();
+    Object.keys(cd_radii).forEach((song, idx) => {
+      cd_vertical_positions[song] = cd_absolute_positions[idx];
+    });
+
+    console.log(`cd vertical positions ${cd_vertical_positions}`);
+
+    const entries = Object.entries(cd_vertical_positions);
+    entries.sort((a, b) => a[1] - b[1]);
+
+    for (const [song, _] of entries) {
+      animation_delays[song] = animation_delay_stack.pop();
+    }
+
+
     for (const song in cd_offsets) {
       cd_offsets[song][0] += x_center_offset;
       cd_offsets[song][1] += y_target_offset;
     }
 
     for (const song in data[selectedAlbum]["songs"]) {
-      songs.push(<CD name={song} streams={scale*process_streams(data[selectedAlbum]["songs"][song]["streams"])} members={data[selectedAlbum]["songs"][song]["members"]} setMemberFocused={setMemberFocused} setClientX={setClientX} setClientY={setClientY} setMemberSelected={setMemberSelected} memberSelected={memberSelected} offset={cd_offsets[song]} z_index={Object.keys(cd_offsets).indexOf(song)}/>)
+      songs.push(<CD delay={animation_delays[song]} name={song} streams={scale*process_streams(data[selectedAlbum]["songs"][song]["streams"])} members={data[selectedAlbum]["songs"][song]["members"]} setMemberFocused={setMemberFocused} setClientX={setClientX} setClientY={setClientY} setMemberSelected={setMemberSelected} memberSelected={memberSelected} offset={cd_offsets[song]} z_index={Object.keys(cd_offsets).indexOf(song)}/>)
     }
   }
 

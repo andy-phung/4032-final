@@ -39,7 +39,7 @@ const DonutSector = ({
   ].join(' ');
 
   return (
-      <path d={pathData} fill={fill} stroke={stroke} stroke-width={stroke_width*2} paintOrder={"stroke"} strokeLinejoin='round'
+      <path d={pathData} fill={fill} stroke={stroke} strokeWidth={stroke_width*2} paintOrder={"stroke"} strokeLinejoin='round'
       onMouseDown={onMouseDown} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} className={className}/>
   );
 };

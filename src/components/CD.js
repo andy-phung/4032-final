@@ -7,6 +7,7 @@ import DonutSector from "./DonutSector";
 const CD = (props) => {
     const [containsMemberSelected, setContainsMemberSelected] = useState(false);
     const [CDSelected, setCDSelected] = useState(false);
+    const [disableTransition, setDisableTransition] = useState(false);
 
     useEffect(() => {
         if (props.members.includes(props.memberSelected)) {
@@ -77,7 +78,7 @@ const CD = (props) => {
     // generate left and top offsets in app.js?
 
     const cd_mouse_down = (e) => {
-        e.target.classList.remove("bg-gray-300"); // this should work?
+        setDisableTransition(true);
 
         if(CDSelected) {
             setCDSelected(false);
@@ -87,7 +88,7 @@ const CD = (props) => {
     };
 
     return (
-        <div style={{left: props.offset[0], top: props.offset[1], width: cd_size, height: cd_size}} className={`${CDSelected ? "cd-spin" : ""} bg-gray-300 member-select-transition cd-fade-in relative items-center justify-center rounded-[50%] flex ${props.memberSelected != "" && !containsMemberSelected ? "opacity-40" : "opacity-100"}`}>
+        <div style={{left: props.offset[0], top: props.offset[1], width: cd_size, height: cd_size}} className={`${CDSelected ? "cd-spin" : ""} bg-gray-300 member-select-transition ${disableTransition ? "" : "cd-fade-in"} relative items-center justify-center rounded-[50%] flex ${props.memberSelected != "" && !containsMemberSelected ? "opacity-40" : "opacity-100"}`}>
             <div style={{width: 0.337 * cd_size, height: 0.337 * cd_size}} onMouseDown={cd_mouse_down} className={`bg-gray-300 z-[1] border-black border-2 rounded-[50%] hover:cursor-pointer`}>
 
             </div>

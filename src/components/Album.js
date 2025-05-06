@@ -24,8 +24,6 @@ const Album = (props) => {
     const set_state = () => {
         if(!isTransitioning) {
             startTransition();
-
-            //console.log("hello??");
             
             if(is_selected) {
                 props.setSelectedAlbum("");
@@ -61,8 +59,6 @@ const Album = (props) => {
     }
 
     useEffect(() => {
-        //console.log("recalc");
-        //console.log(`window height ${props.windowHeight}`)
         const desiredTop = props.windowHeight * 1.075; // px from top of viewport
         // ?? why does this work
 
@@ -74,7 +70,7 @@ const Album = (props) => {
         const viewportCenterX = window.innerWidth / 2;
         const elementCenterX = fullWidth / 2;
         if(is_selected) {
-            console.log(`.. ${fullWidth}, ${rect.left}, ${viewportCenterX}`);
+            //console.log(`.. ${fullWidth}, ${rect.left}, ${viewportCenterX}`);
         }
         setTargetLeft((-rect.left) + viewportCenterX - elementCenterX);
         setTargetTop(desiredTop - rect.top);
@@ -122,7 +118,7 @@ const Album = (props) => {
     return (
         <div className="relative">
             <img src={`/images/albums/${parsed_album_name}.jpg`} ref={self_ref} onClick={set_state} onMouseEnter={mouseEnterStart} onMouseLeave={reset_transition} style={{top: album_selected && is_selected ? `${targetTop}px` : "0px", left: album_selected && is_selected ? `${targetLeft}px` : "0px", height: album_selected && is_selected ? "650px" : `220px`, width: album_selected && is_selected ? "650px" : (props.focusedAlbum == props.name ? `220px` : "30px")}} className={`${album_selected && is_selected ? "object-contain" : "object-cover"} z-[2] ml-[2px] mr-[2px] object-left relative album-transition hover:cursor-pointer ${album_selected && !is_selected ? "opacity-0 pointer-events-none" : "opacity-100"}`}/>
-            <div className={`text-white absolute mt-[2px] text-nowrap overflow-hidden text-center left-0 right-0 ${props.focusedAlbum == props.name && !(album_selected && is_selected)? "" : "hidden"}`}>
+            <div className={`text-white absolute urbanist mt-[3px] text-nowrap overflow-hidden text-center left-0 right-0 ${props.focusedAlbum == props.name && !(album_selected && is_selected)? "" : "hidden"}`}>
                 {props.name} ({props.year})
             </div>
         </div>

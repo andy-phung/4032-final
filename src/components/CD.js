@@ -15,7 +15,6 @@ const CD = (props) => {
     const [fadeInAnimation, setFadeInAnimation] = useState(false);
 
     const animation_delay = props.delay;
-    console.log(`delay ${props.delay}`);
 
     useEffect(() => {
         if (props.members.includes(props.memberSelected)) {
@@ -80,7 +79,7 @@ const CD = (props) => {
         x = cd_size/2 * Math.cos(map_to_angle_radians(member_mapping[member]));
         y = cd_size/2 * Math.sin(map_to_angle_radians(member_mapping[member]));
 
-        marks.push(<DonutSector fill={props.mark_color} stroke={props.bg_color} innerRadius={cd_size/2 - mark_thickness} outerRadius={cd_size/2} sweepAngle={sweep_angle} startAngle={map_to_angle_degrees(member_mapping[member])} stroke_width={mark_stroke_width} onMouseDown={() => {select_member(member)}} onMouseEnter={(e) => {props.setMemberFocused(member); props.setClientX(e.target.getBoundingClientRect().left - e.target.getBoundingClientRect().width); props.setClientY(e.target.getBoundingClientRect().top + e.target.getBoundingClientRect().height)}} onMouseLeave={() => {props.setMemberFocused("")}} className={`${props.memberSelected != "" && !containsMemberSelected ? "pointer-events-none": "hover:cursor-pointer"}`}/>);
+        marks.push(<DonutSector fill={props.mark_color} stroke={props.bg_color} innerRadius={cd_size/2 - mark_thickness} outerRadius={cd_size/2} sweepAngle={sweep_angle} startAngle={map_to_angle_degrees(member_mapping[member])} stroke_width={mark_stroke_width} onMouseDown={() => {select_member(member)}} onMouseEnter={(e) => {props.setPhotocardColor(props.albumData["mark_color"]); props.setCreditNumber(props.albumData["songs"][props.name]["members"].indexOf(member) + 1); props.setMemberFocused(member); props.setClientX(e.target.getBoundingClientRect().left + e.target.getBoundingClientRect().width/2); props.setClientY(e.target.getBoundingClientRect().top + e.target.getBoundingClientRect().height/2)}} onMouseLeave={() => {props.setMemberFocused("")}} className={`${props.memberSelected != "" && !containsMemberSelected ? "pointer-events-none": "hover:cursor-pointer"}`}/>);
     }
 
     // generate left and top offsets in app.js?

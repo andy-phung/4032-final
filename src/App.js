@@ -223,6 +223,9 @@ function App() {
   const [width, setWidth] = React.useState(typeof window !== 'undefined' ? window.innerWidth : 1280); // ..
   const [height, setHeight] = React.useState(typeof window !== 'undefined' ? window.innerHeight : 720); // ..
 
+  const [photocardColor, setPhotocardColor] = useState("#FFFFFF");
+  const [creditNumber, setCreditNumber] = useState(0);
+
   useEffect(() => {
     const handleResize = () => {setWidth(window.innerWidth); setHeight(window.innerHeight); console.log("resize")}
     window.addEventListener('resize', handleResize);
@@ -283,9 +286,9 @@ function App() {
 
     //console.log(`avg streams: ${parseInt(avg_streams)}`);
 
-    if (parseInt(avg_streams) <= 56 || selectedAlbum == "Sector 17") { // scaling up less streamed albums for visibility
+    if ((parseInt(avg_streams) <= 56 || selectedAlbum == "Sector 17") && selectedAlbum != "Love&Letter" && selectedAlbum != "Teen, Age" && selectedAlbum != "An Ode" && selectedAlbum != "You Made My Dawn") { // scaling up less streamed albums for visibility
       //console.log(".");
-      scale = 26*1.8;
+      scale = 26*1.55;
     } else {
       scale = 26 * 1.2;
     }
@@ -319,7 +322,7 @@ function App() {
       cd_vertical_positions[song] = cd_absolute_positions[idx];
     });
 
-    console.log(`cd vertical positions ${cd_vertical_positions}`);
+    //console.log(`cd vertical positions ${cd_vertical_positions}`);
 
     const entries = Object.entries(cd_vertical_positions);
     entries.sort((a, b) => a[1] - b[1]);
@@ -335,20 +338,20 @@ function App() {
     }
 
     for (const song in data[selectedAlbum]["songs"]) {
-      songs.push(<CD bg_color={data[selectedAlbum]["bg_color"]} cd_color={data[selectedAlbum]["cd_color"]} mark_color={data[selectedAlbum]["mark_color"]} selectedAlbum={selectedAlbum} delay={animation_delays[song]} name={song} streams={scale*process_streams(data[selectedAlbum]["songs"][song]["streams"])} members={data[selectedAlbum]["songs"][song]["members"]} setMemberFocused={setMemberFocused} setClientX={setClientX} setClientY={setClientY} setMemberSelected={setMemberSelected} memberSelected={memberSelected} offset={cd_offsets[song]} z_index={Object.keys(cd_offsets).indexOf(song)}/>)
+      songs.push(<CD bg_color={data[selectedAlbum]["bg_color"]} cd_color={data[selectedAlbum]["cd_color"]} mark_color={data[selectedAlbum]["mark_color"]} selectedAlbum={selectedAlbum} delay={animation_delays[song]} name={song} streams={scale*process_streams(data[selectedAlbum]["songs"][song]["streams"])} members={data[selectedAlbum]["songs"][song]["members"]} setMemberFocused={setMemberFocused} setClientX={setClientX} setClientY={setClientY} setMemberSelected={setMemberSelected} memberSelected={memberSelected} offset={cd_offsets[song]} z_index={Object.keys(cd_offsets).indexOf(song)} setPhotocardColor={setPhotocardColor} setCreditNumber={setCreditNumber} albumData={data[selectedAlbum]}/>)
     }
   }
 
   console.log(songs.length);
 
   return (
-    <div style={{backgroundColor: selectedAlbum != "" ? data[selectedAlbum]["bg_color"] : "black"}} className="bg-fade w-screen h-screen">
+    <div style={{backgroundColor: selectedAlbum != "" ? data[selectedAlbum]["bg_color"] : "#080808"}} className="bg-fade w-screen h-screen">
       <div className="relative w-screen h-screen flex justify-center items-center">
         {albums}
         <div className={`absolute top-[120px] flex items-center justify-center ${selectedAlbum != "" ? "" : "opacity-0 pointer-events-none"}`}>
           {songs}
         </div>
-        <Photocard memberFocused={memberFocused} clientX={clientX} clientY={clientY}/>
+        <Photocard memberFocused={memberFocused} clientX={clientX} clientY={clientY} photocardColor={photocardColor} creditNumber={creditNumber} bgColor={selectedAlbum != "" ? data[selectedAlbum]["bg_color"] : "#080808"}/>
       </div>
     </div>
   );

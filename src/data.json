@@ -65,9 +65,57 @@
         "cd_color": "#94515B",
         "mark_color": "#711D2A",
         "songs": {
-            "": {
+            "Intro. New World": {
                 "members": [],
-                "streams": 0
+                "streams": 8.2
+            },
+            "CHANGE UP": {
+                "members": [],
+                "streams": 35.1
+            },
+            "Without You": {
+                "members": [],
+                "streams": 16.7
+            },
+            "CLAP": {
+                "members": [],
+                "streams": 145.1
+            },
+            "BRING IT": {
+                "members": [],
+                "streams": 16.7
+            },
+            "Lilili Yabbay": {
+                "members": [],
+                "streams": 24.5
+            },
+            "TRAUMA": {
+                "members": [],
+                "streams": 37.8
+            },
+            "Pinwheel": {
+                "members": [],
+                "streams": 42.6
+            },
+            "Flower": {
+                "members": [],
+                "streams": 21.4
+            },
+            "ROCKET": {
+                "members": [],
+                "streams": 16.3
+            },
+            "Hello": {
+                "members": [],
+                "streams": 14.8
+            },
+            "Campfire": {
+                "members": [],
+                "streams": 35.9
+            },
+            "Outro. Incompletion": {
+                "members": [],
+                "streams": 6.4
             }
         }
     },
@@ -77,9 +125,21 @@
         "cd_color": "#8F8D92",
         "mark_color": "#B6B5BA",
         "songs": {
-            "": {
-                "members": [],
-                "streams": 0
+            "Thinkin' about you": {
+                "members": ["Woozi", "Vernon", "S.Coups", "Wonwoo", "Mingyu"],
+                "streams": 21.4
+            },
+            "THANKS": {
+                "members": ["Woozi", "Hoshi"],
+                "streams": 81.4
+            },
+            "Run to you": {
+                "members": ["Woozi"],
+                "streams": 32
+            },
+            "Falling For U": {
+                "members": ["Woozi", "Joshua", "Jeonghan"],
+                "streams": 21.5
             }
         }
     },
@@ -89,9 +149,29 @@
         "cd_color": "#AD6D87",
         "mark_color": "#934464",
         "songs": {
-            "": {
-                "members": [],
-                "streams": 0
+            "Oh My!": {
+                "members": ["Woozi", "Vernon", "S.Coups"],
+                "streams": 87.5
+            },
+            "Holiday": {
+                "members": ["Woozi", "S.Coups", "Wonwoo"],
+                "streams": 29.2
+            },
+            "Come to me": {
+                "members": ["Woozi"],
+                "streams": 16.6
+            },
+            "What's Good": {
+                "members": ["S.Coups", "Vernon", "Wonwoo", "Mingyu"],
+                "streams": 13.2
+            },
+            "MOONWALKER": {
+                "members": ["Woozi", "Hoshi", "Dino"],
+                "streams": 20.3
+            },
+            "Our dawn is hotter than day": {
+                "members": ["Woozi", "Vernon", "S.Coups", "Mingyu", "Wonwoo"],
+                "streams": 51.8
             }
         }
     },
@@ -101,9 +181,29 @@
         "cd_color": "#61290E",
         "mark_color": "#914A0C",
         "songs": {
-            "": {
-                "members": [],
-                "streams": 0
+            "Good to Me": {
+                "members": ["Woozi"],
+                "streams": 63.6
+            },
+            "Home": {
+                "members": ["Woozi"],
+                "streams": 107.4
+            },
+            "Hug": {
+                "members": ["Woozi"],
+                "streams": 69
+            },
+            "Chilli": {
+                "members": ["S.Coups", "Vernon", "Mingyu", "Wonwoo"],
+                "streams": 15
+            },
+            "Shhh": {
+                "members": ["Hoshi", "Dino"],
+                "streams": 14.2
+            },
+            "Getting Closer": {
+                "members": ["Woozi", "Vernon", "S.Coups"],
+                "streams": 42.3
             }
         }
     },
@@ -113,9 +213,49 @@
         "cd_color": "#AAA6D9",
         "mark_color": "#B7AFC1",
         "songs": {
-            "": {
-                "members": [],
-                "streams": 0
+            "HIT": {
+                "members": ["Woozi", "Vernon"],
+                "streams": 95.2
+            },
+            "Lie Again": {
+                "members": ["Woozi", "Mingyu", "S.Coups", "Vernon"],
+                "streams": 26.4
+            },
+            "Fear": {
+                "members": ["Woozi", "Vernon", "S.Coups"],
+                "streams": 72.2
+            },
+            "Let me hear you say": {
+                "members": ["Woozi", "Mingyu", "S.Coups", "Vernon"],
+                "streams": 19.9
+            },
+            "247": {
+                "members": ["Woozi", "The8", "Hoshi", "Dino"],
+                "streams": 22.4
+            },
+            "Second Life": {
+                "members": ["Woozi"],
+                "streams": 25.9
+            },
+            "Network Love": {
+                "members": ["Woozi", "The8", "Vernon"],
+                "streams": 14
+            },
+            "Back it up": {
+                "members": ["S.Coups", "Wonwoo", "Mingyu", "Vernon"],
+                "streams": 21.2
+            },
+            "Lucky": {
+                "members": ["Woozi", "Vernon", "Mingyu", "Seungkwan"],
+                "streams": 13.9
+            },
+            "Snap Shoot": {
+                "members": ["Woozi", "Vernon", "S.Coups", "Mingyu"],
+                "streams": 48.2
+            },
+            "Happy Ending (Korean Ver.)": {
+                "members": ["Woozi"],
+                "streams": 14.8
             }
         }
     },
@@ -125,9 +265,9 @@
         "cd_color": "#4A4F3B",
         "mark_color": "#8E5242",
         "songs": {
-            "": {
-                "members": [],
-                "streams": 0
+            "Fallin' Flower": {
+                "members": ["Woozi", "Dino"],
+                "streams": 53.6
             }
         }
     },

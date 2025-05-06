@@ -8,6 +8,7 @@ import data from "./data.json";
 import Album from "./components/Album.js";
 import CD from "./components/CD.js";
 import Photocard from "./components/Photocard.js";
+import SongCard from "./components/SongCard.js";
 
 function generateEvenlySpacedValues(start, end, numValues) {
   if (numValues < 1) {
@@ -226,6 +227,10 @@ function App() {
   const [photocardColor, setPhotocardColor] = useState("#FFFFFF");
   const [creditNumber, setCreditNumber] = useState(0);
 
+  const [focusedSong, setFocusedSong] = useState("");
+  const [CDCenterX, setCDCenterX] = useState(0);
+  const [CDCenterY, setCDCenterY] = useState(0);
+
   useEffect(() => {
     const handleResize = () => {setWidth(window.innerWidth); setHeight(window.innerHeight); console.log("resize")}
     window.addEventListener('resize', handleResize);
@@ -338,7 +343,7 @@ function App() {
     }
 
     for (const song in data[selectedAlbum]["songs"]) {
-      songs.push(<CD bg_color={data[selectedAlbum]["bg_color"]} cd_color={data[selectedAlbum]["cd_color"]} mark_color={data[selectedAlbum]["mark_color"]} selectedAlbum={selectedAlbum} delay={animation_delays[song]} name={song} streams={scale*process_streams(data[selectedAlbum]["songs"][song]["streams"])} members={data[selectedAlbum]["songs"][song]["members"]} setMemberFocused={setMemberFocused} setClientX={setClientX} setClientY={setClientY} setMemberSelected={setMemberSelected} memberSelected={memberSelected} offset={cd_offsets[song]} z_index={Object.keys(cd_offsets).indexOf(song)} setPhotocardColor={setPhotocardColor} setCreditNumber={setCreditNumber} albumData={data[selectedAlbum]}/>)
+      songs.push(<CD bg_color={data[selectedAlbum]["bg_color"]} cd_color={data[selectedAlbum]["cd_color"]} mark_color={data[selectedAlbum]["mark_color"]} selectedAlbum={selectedAlbum} delay={animation_delays[song]} name={song} streams={scale*process_streams(data[selectedAlbum]["songs"][song]["streams"])} members={data[selectedAlbum]["songs"][song]["members"]} setMemberFocused={setMemberFocused} clientX={clientX} clientY={clientY} setClientX={setClientX} setClientY={setClientY} setMemberSelected={setMemberSelected} memberSelected={memberSelected} offset={cd_offsets[song]} z_index={Object.keys(cd_offsets).indexOf(song)} setPhotocardColor={setPhotocardColor} setCreditNumber={setCreditNumber} albumData={data[selectedAlbum]} setFocusedSong={setFocusedSong} setCDCenterX={setCDCenterX} setCDCenterY={setCDCenterY}/>)
     }
   }
 
@@ -352,6 +357,7 @@ function App() {
           {songs}
         </div>
         <Photocard memberFocused={memberFocused} clientX={clientX} clientY={clientY} photocardColor={photocardColor} creditNumber={creditNumber} bgColor={selectedAlbum != "" ? data[selectedAlbum]["bg_color"] : "#080808"}/>
+        <SongCard focusedSong={focusedSong} clientX={CDCenterX} clientY={CDCenterY} photocardColor={photocardColor} bgColor={selectedAlbum != "" ? data[selectedAlbum]["bg_color"] : "#080808"}/>
       </div>
     </div>
   );

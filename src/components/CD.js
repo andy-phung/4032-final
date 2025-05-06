@@ -13,6 +13,7 @@ const CD = (props) => {
     const [CDSelected, setCDSelected] = useState(false);
     const [disableTransition, setDisableTransition] = useState(false);
     const [fadeInAnimation, setFadeInAnimation] = useState(false);
+    const [CDHover, setCDHover] = useState(false);
 
     const animation_delay = props.delay;
 
@@ -105,8 +106,8 @@ const CD = (props) => {
     }
 
     return (
-        <div style={{backgroundColor: props.cd_color, left: props.offset[0], top: parseInt(props.offset[1]), width: cd_size, height: cd_size, animation: disableTransition ? "" : props.selectedAlbum != "" ? `${1.1 + animation_delay}s cd-fade-in-animation ease-out` : `${1.1 + animation_delay}s cd-fade-out-animation ease-out`}} className={`${CDSelected ? "cd-spin" : ""} member-select-transition mt-0 relative items-center justify-center rounded-[50%] flex ${props.memberSelected != "" && !containsMemberSelected ? "opacity-55" : "opacity-100"}`}>
-            <div style={{backgroundColor: props.cd_color, borderColor: props.bg_color, width: 0.337 * cd_size, height: 0.337 * cd_size, borderWidth: border_thickness}} onMouseDown={cd_mouse_down} className={`z-[1] rounded-[50%] hover:cursor-pointer flex items-center justify-center`}>
+            <div style={{backgroundColor: props.cd_color, left: props.offset[0], top: parseInt(props.offset[1]), width: cd_size, height: cd_size, animation: disableTransition ? "" : props.selectedAlbum != "" ? `${1.1 + animation_delay}s cd-fade-in-animation ease-out` : `${1.1 + animation_delay}s cd-fade-out-animation ease-out`}} className={`${CDSelected ? "cd-spin" : ""} member-select-transition mt-0 relative items-center justify-center rounded-[50%] flex ${props.memberSelected != "" && !containsMemberSelected ? "opacity-55" : "opacity-100"}`}>
+            <div style={{backgroundColor: props.cd_color, borderColor: props.bg_color, width: 0.337 * cd_size, height: 0.337 * cd_size, borderWidth: border_thickness}} onMouseEnter={(e) => {props.setFocusedSong(props.name); props.setCDCenterX(e.target.getBoundingClientRect().left + e.target.getBoundingClientRect().width/2); props.setCDCenterY(e.target.getBoundingClientRect().top + e.target.getBoundingClientRect().height/2);}} onMouseLeave={(e) => {props.setFocusedSong("");}} onMouseDown={cd_mouse_down} className={`z-[1] rounded-[50%] hover:cursor-pointer flex items-center justify-center`}>
                 <div style={{backgroundColor: props.bg_color, width: 0.189 * cd_size, height: 0.189 * cd_size}} className="rounded-[50%]">
 
                 </div>
@@ -115,6 +116,7 @@ const CD = (props) => {
                 {marks}
             </svg>
         </div>
+        
     )
 }
 

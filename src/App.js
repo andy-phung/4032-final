@@ -248,11 +248,9 @@ function App() {
           audio.current.play();
         }                
       } else {
-        console.log("?");
         audio.current.pause();
         audio.current.currentTime = 0;
       }
-      
     }
   }, [audioPlaying]);
 
@@ -271,7 +269,7 @@ function App() {
   let albums = [];
 
   for (const album_name in data) {
-    albums.push(<Album windowHeight={height} selectedAlbum={selectedAlbum} setSelectedAlbum={setSelectedAlbum} focusedAlbum={focusedAlbum} setFocusedAlbum={setFocusedAlbum} name={`${album_name}`} year={data[album_name]["release_year"]} setMemberSelected={setMemberSelected}/>)
+    albums.push(<Album setAudioPlaying={setAudioPlaying} windowHeight={height} selectedAlbum={selectedAlbum} setSelectedAlbum={setSelectedAlbum} focusedAlbum={focusedAlbum} setFocusedAlbum={setFocusedAlbum} name={`${album_name}`} year={data[album_name]["release_year"]} setMemberSelected={setMemberSelected}/>)
   }
 
   let cd_radii = {};

@@ -28,6 +28,7 @@ const Album = (props) => {
             if(is_selected) {
                 props.setSelectedAlbum("");
                 props.setMemberSelected("");
+                props.setAudioPlaying(false);
                 //setFullWidth(220);
             } else {
                 props.setSelectedAlbum(props.name);
@@ -35,6 +36,7 @@ const Album = (props) => {
             }
             
         }
+        
 
 
 

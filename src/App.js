@@ -376,7 +376,7 @@ function App() {
     }
 
     for (const song in data[selectedAlbum]["songs"]) {
-      songs.push(<CD bg_color={data[selectedAlbum]["bg_color"]} cd_color={data[selectedAlbum]["cd_color"]} mark_color={data[selectedAlbum]["mark_color"]} selectedAlbum={selectedAlbum} delay={animation_delays[song]} name={song} streams={scale*process_streams(data[selectedAlbum]["songs"][song]["streams"])} members={data[selectedAlbum]["songs"][song]["members"]} setMemberFocused={setMemberFocused} clientX={clientX} clientY={clientY} setClientX={setClientX} setClientY={setClientY} setMemberSelected={setMemberSelected} memberSelected={memberSelected} offset={cd_offsets[song]} z_index={Object.keys(cd_offsets).indexOf(song)} setPhotocardColor={setPhotocardColor} setCreditNumber={setCreditNumber} albumData={data[selectedAlbum]} setFocusedSong={setFocusedSong} setCDCenterX={setCDCenterX} setCDCenterY={setCDCenterY} setAudioPlaying={setAudioPlaying} audioPlaying={audioPlaying} audioName={audioName} setAudioName={setAudioName}/>)
+      songs.push(<CD bg_color={data[selectedAlbum]["bg_color"]} cd_color={data[selectedAlbum]["cd_color"]} mark_color={data[selectedAlbum]["mark_color"]} selectedAlbum={selectedAlbum} delay={animation_delays[song]} name={song} streams={scale*process_streams(data[selectedAlbum]["songs"][song]["streams"])} members={data[selectedAlbum]["songs"][song]["members"]} setMemberFocused={setMemberFocused} memberFocused={memberFocused} clientX={clientX} clientY={clientY} setClientX={setClientX} setClientY={setClientY} setMemberSelected={setMemberSelected} memberSelected={memberSelected} offset={cd_offsets[song]} z_index={Object.keys(cd_offsets).indexOf(song)} setPhotocardColor={setPhotocardColor} setCreditNumber={setCreditNumber} albumData={data[selectedAlbum]} setFocusedSong={setFocusedSong} setCDCenterX={setCDCenterX} setCDCenterY={setCDCenterY} setAudioPlaying={setAudioPlaying} audioPlaying={audioPlaying} audioName={audioName} setAudioName={setAudioName}/>)
     }
   }
 
@@ -384,10 +384,10 @@ function App() {
 
   return (
     <div style={{backgroundColor: selectedAlbum != "" ? data[selectedAlbum]["bg_color"] : "#080808"}} className="bg-fade w-screen h-screen flex justify-center items-center" onMouseDown={() => {setIntroState(introState + 1)}}>
-      <div className={`text-white absolute z-[6] intro-fade urbanist ${introState == 0 ? "" : "opacity-0 pointer-events-none"}`}>
+      <div className={`text-white text-[20px] absolute z-[6] intro-fade urbanist ${introState == 0 ? "" : "opacity-0 pointer-events-none"}`}>
         SEVENTEEN is an idol group known for producing their own music.
       </div>
-      <div className={`text-white absolute z-[6] ${introState > 1 ? "intro-2-fade-out" : "intro-2-fade"} urbanist ${introState == 1 ? "" : "opacity-0 pointer-events-none"}`}>
+      <div className={`text-white text-[20px] absolute z-[6] ${introState > 1 ? "intro-2-fade-out" : "intro-2-fade"} urbanist ${introState == 1 ? "" : "opacity-0 pointer-events-none"}`}>
         How has each member contributed to this over the years?
       </div>
       <div className={`relative w-screen h-screen flex intro-2-fade justify-center items-center ${introState > 1 ? "" : "opacity-0 pointer-events-none"}`}>

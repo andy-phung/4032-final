@@ -55,7 +55,7 @@ code {
 
 
 .album-transition {
-  transition: left 0.5s, top 0.5s, opacity 0.5s, width 0.4s ease, height 0.4s ease;
+  transition: left 0.5s, top 0.5s, opacity 0.5s, width 0.7s ease, height 0.7s ease;
 }
 
 .photocard-transition {
@@ -94,7 +94,7 @@ code {
 }
 
 .cd-fade-in {
-  animation: cd-fade-in-animation 1s ease-out;
+  animation: cd-fade-in-animation 1.4s ease-out;
 }
 
 @keyframes rotation {

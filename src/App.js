@@ -236,6 +236,8 @@ function App() {
   const [audioPlaying, setAudioPlaying] = useState(false);
   const audioCurrentlyPlaying = useRef(false);
 
+  const [introState, setIntroState] = useState(0);
+
   useEffect(() => {
     //console.log(`audio ${audioName}`);
 
@@ -381,8 +383,14 @@ function App() {
   //console.log(songs.length);
 
   return (
-    <div style={{backgroundColor: selectedAlbum != "" ? data[selectedAlbum]["bg_color"] : "#080808"}} className="bg-fade w-screen h-screen">
-      <div className="relative w-screen h-screen flex justify-center items-center">
+    <div style={{backgroundColor: selectedAlbum != "" ? data[selectedAlbum]["bg_color"] : "#080808"}} className="bg-fade w-screen h-screen flex justify-center items-center" onMouseDown={() => {setIntroState(introState + 1)}}>
+      <div className={`text-white absolute z-[6] intro-fade urbanist ${introState == 0 ? "" : "opacity-0 pointer-events-none"}`}>
+        SEVENTEEN is an idol group known for producing their own music.
+      </div>
+      <div className={`text-white absolute z-[6] ${introState > 1 ? "intro-2-fade-out" : "intro-2-fade"} urbanist ${introState == 1 ? "" : "opacity-0 pointer-events-none"}`}>
+        How has each member contributed to this over the years?
+      </div>
+      <div className={`relative w-screen h-screen flex intro-2-fade justify-center items-center ${introState > 1 ? "" : "opacity-0 pointer-events-none"}`}>
         {albums}
         <div className={`absolute top-[120px] flex items-center justify-center ${selectedAlbum != "" ? "" : "opacity-0 pointer-events-none"}`}>
           {songs}

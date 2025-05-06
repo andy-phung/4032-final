@@ -117,3 +117,19 @@ code {
 .photocard-aspect-ratio {
   aspect-ratio: 97.5 / 163;
 }
+
+.intro-fade {
+  transition: opacity 0.7s;
+}
+
+
+.intro-2-fade {
+  transition-property: opacity;
+  transition-delay: 0.7s;
+  transition-duration: 0.7s;
+}
+
+.intro-2-fade-out {
+  transition-property: opacity;
+  transition-duration: 0.7s;
+}

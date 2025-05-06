@@ -335,14 +335,14 @@ function App() {
     }
 
     for (const song in data[selectedAlbum]["songs"]) {
-      songs.push(<CD selectedAlbum={selectedAlbum} delay={animation_delays[song]} name={song} streams={scale*process_streams(data[selectedAlbum]["songs"][song]["streams"])} members={data[selectedAlbum]["songs"][song]["members"]} setMemberFocused={setMemberFocused} setClientX={setClientX} setClientY={setClientY} setMemberSelected={setMemberSelected} memberSelected={memberSelected} offset={cd_offsets[song]} z_index={Object.keys(cd_offsets).indexOf(song)}/>)
+      songs.push(<CD bg_color={data[selectedAlbum]["bg_color"]} cd_color={data[selectedAlbum]["cd_color"]} mark_color={data[selectedAlbum]["mark_color"]} selectedAlbum={selectedAlbum} delay={animation_delays[song]} name={song} streams={scale*process_streams(data[selectedAlbum]["songs"][song]["streams"])} members={data[selectedAlbum]["songs"][song]["members"]} setMemberFocused={setMemberFocused} setClientX={setClientX} setClientY={setClientY} setMemberSelected={setMemberSelected} memberSelected={memberSelected} offset={cd_offsets[song]} z_index={Object.keys(cd_offsets).indexOf(song)}/>)
     }
   }
 
   console.log(songs.length);
 
   return (
-    <div className="bg-black w-screen h-screen">
+    <div style={{backgroundColor: selectedAlbum != "" ? data[selectedAlbum]["bg_color"] : "black"}} className="bg-fade w-screen h-screen">
       <div className="relative w-screen h-screen flex justify-center items-center">
         {albums}
         <div className={`absolute top-[120px] flex items-center justify-center ${selectedAlbum != "" ? "" : "opacity-0 pointer-events-none"}`}>

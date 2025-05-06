@@ -80,7 +80,7 @@ const CD = (props) => {
         x = cd_size/2 * Math.cos(map_to_angle_radians(member_mapping[member]));
         y = cd_size/2 * Math.sin(map_to_angle_radians(member_mapping[member]));
 
-        marks.push(<DonutSector innerRadius={cd_size/2 - mark_thickness} outerRadius={cd_size/2} sweepAngle={sweep_angle} startAngle={map_to_angle_degrees(member_mapping[member])} stroke_width={mark_stroke_width} onMouseDown={() => {select_member(member)}} onMouseEnter={(e) => {props.setMemberFocused(member); props.setClientX(e.target.getBoundingClientRect().left - e.target.getBoundingClientRect().width); props.setClientY(e.target.getBoundingClientRect().top + e.target.getBoundingClientRect().height)}} onMouseLeave={() => {props.setMemberFocused("")}} className={`${props.memberSelected != "" && !containsMemberSelected ? "pointer-events-none": "hover:cursor-pointer"}`}/>);
+        marks.push(<DonutSector fill={props.mark_color} stroke={props.bg_color} innerRadius={cd_size/2 - mark_thickness} outerRadius={cd_size/2} sweepAngle={sweep_angle} startAngle={map_to_angle_degrees(member_mapping[member])} stroke_width={mark_stroke_width} onMouseDown={() => {select_member(member)}} onMouseEnter={(e) => {props.setMemberFocused(member); props.setClientX(e.target.getBoundingClientRect().left - e.target.getBoundingClientRect().width); props.setClientY(e.target.getBoundingClientRect().top + e.target.getBoundingClientRect().height)}} onMouseLeave={() => {props.setMemberFocused("")}} className={`${props.memberSelected != "" && !containsMemberSelected ? "pointer-events-none": "hover:cursor-pointer"}`}/>);
     }
 
     // generate left and top offsets in app.js?
@@ -104,12 +104,11 @@ const CD = (props) => {
     else {
         border_thickness = 1.5;
     }
-    
 
     return (
-        <div style={{left: props.offset[0], top: parseInt(props.offset[1]), width: cd_size, height: cd_size, animation: disableTransition ? "" : props.selectedAlbum != "" ? `${1.1 + animation_delay}s cd-fade-in-animation ease-out` : `${1.1 + animation_delay}s cd-fade-out-animation ease-out`}} className={`${CDSelected ? "cd-spin" : ""} bg-gray-300 member-select-transition mt-0 relative items-center justify-center rounded-[50%] flex ${props.memberSelected != "" && !containsMemberSelected ? "opacity-40" : "opacity-100"}`}>
-            <div style={{width: 0.337 * cd_size, height: 0.337 * cd_size, borderWidth: border_thickness}} onMouseDown={cd_mouse_down} className={`bg-gray-300 z-[1] border-black rounded-[50%] hover:cursor-pointer flex items-center justify-center`}>
-                <div style={{width: 0.189 * cd_size, height: 0.189 * cd_size}} className="bg-black rounded-[50%]">
+        <div style={{backgroundColor: props.cd_color, left: props.offset[0], top: parseInt(props.offset[1]), width: cd_size, height: cd_size, animation: disableTransition ? "" : props.selectedAlbum != "" ? `${1.1 + animation_delay}s cd-fade-in-animation ease-out` : `${1.1 + animation_delay}s cd-fade-out-animation ease-out`}} className={`${CDSelected ? "cd-spin" : ""} member-select-transition mt-0 relative items-center justify-center rounded-[50%] flex ${props.memberSelected != "" && !containsMemberSelected ? "opacity-55" : "opacity-100"}`}>
+            <div style={{backgroundColor: props.cd_color, borderColor: props.bg_color, width: 0.337 * cd_size, height: 0.337 * cd_size, borderWidth: border_thickness}} onMouseDown={cd_mouse_down} className={`z-[1] rounded-[50%] hover:cursor-pointer flex items-center justify-center`}>
+                <div style={{backgroundColor: props.bg_color, width: 0.189 * cd_size, height: 0.189 * cd_size}} className="rounded-[50%]">
 
                 </div>
             </div>

@@ -58,7 +58,7 @@ code {
 }
 
 .cd-fade-in {
-  animation: 1s cd-fade-in-animation ease-out;
+  animation: cd-fade-in-animation 1s ease-out;
 }
 
 @keyframes rotation {
@@ -72,4 +72,8 @@ code {
 
 .cd-spin {
   animation: rotation 6s infinite linear;
+}
+
+.bg-fade {
+  transition: background-color 0.4s;
 }

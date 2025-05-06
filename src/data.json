@@ -1,6 +1,9 @@
 {
     "17 Carat": {
         "release_year": 2015,
+        "bg_color": "#C7CBD6",
+        "cd_color": "#0F1F6B",
+        "mark_color": "#465BAE",
         "songs": {
             "": {
                 "members": [],
@@ -10,6 +13,9 @@
     },
     "Boys Be": {
         "release_year": 2015,
+        "bg_color": "#7EBCD5",
+        "cd_color": "#BB697E",
+        "mark_color": "#4665AE",
         "songs": {
             "": {
                 "members": [],
@@ -19,6 +25,9 @@
     },
     "Love&Letter": {
         "release_year": 2016,
+        "bg_color": "#ACD6E5",
+        "cd_color": "#BF668E",
+        "mark_color": "#7E3355",
         "songs": {
             "": {
                 "members": [],
@@ -28,6 +37,9 @@
     },
     "Going Seventeen": {
         "release_year": 2016,
+        "bg_color": "#A09D8A",
+        "cd_color": "#000000",
+        "mark_color": "#545036",
         "songs": {
             "": {
                 "members": [],
@@ -37,6 +49,9 @@
     },
     "Al1": {
         "release_year": 2017,
+        "bg_color": "#EBEBEB",
+        "cd_color": "#9A878A",
+        "mark_color": "#654A4E",
         "songs": {
             "": {
                 "members": [],
@@ -46,6 +61,9 @@
     },
     "Teen, Age": {
         "release_year": 2017,
+        "bg_color": "#969EB9",
+        "cd_color": "#94515B",
+        "mark_color": "#711D2A",
         "songs": {
             "": {
                 "members": [],
@@ -55,6 +73,9 @@
     },
     "Director's Cut": {
         "release_year": 2018,
+        "bg_color": "#37373C",
+        "cd_color": "#8F8D92",
+        "mark_color": "#B6B5BA",
         "songs": {
             "": {
                 "members": [],
@@ -64,6 +85,9 @@
     },
     "You Make My Day": {
         "release_year": 2018,
+        "bg_color": "#A4AFC2",
+        "cd_color": "#AD6D87",
+        "mark_color": "#934464",
         "songs": {
             "": {
                 "members": [],
@@ -73,6 +97,9 @@
     },
     "You Made My Dawn": {
         "release_year": 2019,
+        "bg_color": "#C79559",
+        "cd_color": "#61290E",
+        "mark_color": "#914A0C",
         "songs": {
             "": {
                 "members": [],
@@ -82,6 +109,9 @@
     },
     "An Ode": {
         "release_year": 2019,
+        "bg_color": "#272727",
+        "cd_color": "#AAA6D9",
+        "mark_color": "#B7AFC1",
         "songs": {
             "": {
                 "members": [],
@@ -91,6 +121,9 @@
     },
     "Fallin' Flower": {
         "release_year": 2020,
+        "bg_color": "#D7B9A5",
+        "cd_color": "#4A4F3B",
+        "mark_color": "#8E5242",
         "songs": {
             "": {
                 "members": [],
@@ -100,6 +133,9 @@
     },
     "Heng:garæ": {
         "release_year": 2020,
+        "bg_color": "#101010",
+        "cd_color": "#DC9754",
+        "mark_color": "#A75709",
         "songs": {
             "Fearless": {
                 "members": ["Woozi", "Vernon"],
@@ -129,6 +165,9 @@
     },
     "Semicolon": {
         "release_year": 2020,
+        "bg_color": "#F6E9D9",
+        "cd_color": "#000000",
+        "mark_color": "#A27E5B",
         "songs": {
             "HOME;RUN": {
                 "members": ["Woozi", "Vernon", "Seungkwan"],
@@ -158,6 +197,9 @@
     },
     "Your Choice": {
         "release_year": 2021,
+        "bg_color": "#333A84",
+        "cd_color": "#D5CC52",
+        "mark_color": "#C26CA9",
         "songs": {
             "Heaven's Cloud": {
                 "members": ["Woozi", "S.Coups", "Mingyu"],
@@ -187,6 +229,9 @@
     },
     "Attacca": {
         "release_year": 2021,
+        "bg_color": "#121212",
+        "cd_color": "#A12728",
+        "mark_color": "#CA8888",
         "songs": {
             "To you": {
                 "members": ["Woozi"],
@@ -220,6 +265,9 @@
     },
     "Face the Sun": {
         "release_year": 2022,
+        "bg_color": "#F8F8F8",
+        "cd_color": "#000000",
+        "mark_color": "#8D8D8D",
         "songs": {
             "Darl+ing": {
                 "members": ["Woozi"],
@@ -261,6 +309,9 @@
     },
     "Sector 17": {
         "release_year": 2022,
+        "bg_color": "#133A00",
+        "cd_color": "#FFD253",
+        "mark_color": "#01847C",
         "songs": {
             "Circles": {
                 "members": ["Woozi"],
@@ -282,6 +333,9 @@
     },
     "FML": {
         "release_year": 2023,
+        "bg_color": "#F8F8F8",
+        "cd_color": "#A9A9A9",
+        "mark_color": "#000000",
         "songs": {
             "F*ck My Life": {
                 "members": ["Woozi"],
@@ -311,6 +365,9 @@
     },
     "Seventeenth Heaven": {
         "release_year": 2023,
+        "bg_color": "#A2CCF0",
+        "cd_color": "#AF0615",
+        "mark_color": "#00285C",
         "songs": {
             "SOS (Prod. Marshmello)": {
                 "members": ["Woozi"],
@@ -344,6 +401,9 @@
     },
     "17 Is Right Here": {
         "release_year": 2024,
+        "bg_color": "#BDBDBD",
+        "cd_color": "#000000",
+        "mark_color": "#5E5E5E",
         "songs": {
             "MAESTRO": {
                 "members": ["Woozi"],
@@ -365,6 +425,9 @@
     },
     "Spill the Feels": {
         "release_year": 2024,
+        "bg_color": "#9DD9E1",
+        "cd_color": "#D57313",
+        "mark_color": "#98361D",
         "songs": {
             "Eyes on You": {
                 "members": ["Woozi", "S.Coups", "Vernon"],

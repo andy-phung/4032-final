@@ -231,8 +231,31 @@ function App() {
   const [CDCenterX, setCDCenterX] = useState(0);
   const [CDCenterY, setCDCenterY] = useState(0);
 
+  const audio = useRef(null);
+  const [audioName, setAudioName] = useState("");
+  const [audioPlaying, setAudioPlaying] = useState(false);
+
   useEffect(() => {
-    const handleResize = () => {setWidth(window.innerWidth); setHeight(window.innerHeight); console.log("resize")}
+    //console.log(`audio ${audioName}`);
+
+    let parsed_name = String(audioName).replaceAll("*", "");
+
+    if(audioName != "") {
+      if (audioPlaying) {
+        const file = `audio/${parsed_name}.mp3`;
+        audio.current = new Audio(file);
+        audio.current.play();
+      } else {
+        console.log("?");
+        audio.current.pause();
+        audio.current.currentTime = 0;
+      }
+      
+    }
+  }, [audioPlaying]);
+
+  useEffect(() => {
+    const handleResize = () => {setWidth(window.innerWidth); setHeight(window.innerHeight);}
     window.addEventListener('resize', handleResize);
     handleResize(); // Set initial width
     //console.log(width);
@@ -343,11 +366,11 @@ function App() {
     }
 
     for (const song in data[selectedAlbum]["songs"]) {
-      songs.push(<CD bg_color={data[selectedAlbum]["bg_color"]} cd_color={data[selectedAlbum]["cd_color"]} mark_color={data[selectedAlbum]["mark_color"]} selectedAlbum={selectedAlbum} delay={animation_delays[song]} name={song} streams={scale*process_streams(data[selectedAlbum]["songs"][song]["streams"])} members={data[selectedAlbum]["songs"][song]["members"]} setMemberFocused={setMemberFocused} clientX={clientX} clientY={clientY} setClientX={setClientX} setClientY={setClientY} setMemberSelected={setMemberSelected} memberSelected={memberSelected} offset={cd_offsets[song]} z_index={Object.keys(cd_offsets).indexOf(song)} setPhotocardColor={setPhotocardColor} setCreditNumber={setCreditNumber} albumData={data[selectedAlbum]} setFocusedSong={setFocusedSong} setCDCenterX={setCDCenterX} setCDCenterY={setCDCenterY}/>)
+      songs.push(<CD bg_color={data[selectedAlbum]["bg_color"]} cd_color={data[selectedAlbum]["cd_color"]} mark_color={data[selectedAlbum]["mark_color"]} selectedAlbum={selectedAlbum} delay={animation_delays[song]} name={song} streams={scale*process_streams(data[selectedAlbum]["songs"][song]["streams"])} members={data[selectedAlbum]["songs"][song]["members"]} setMemberFocused={setMemberFocused} clientX={clientX} clientY={clientY} setClientX={setClientX} setClientY={setClientY} setMemberSelected={setMemberSelected} memberSelected={memberSelected} offset={cd_offsets[song]} z_index={Object.keys(cd_offsets).indexOf(song)} setPhotocardColor={setPhotocardColor} setCreditNumber={setCreditNumber} albumData={data[selectedAlbum]} setFocusedSong={setFocusedSong} setCDCenterX={setCDCenterX} setCDCenterY={setCDCenterY} setAudioPlaying={setAudioPlaying} audioPlaying={audioPlaying} audioName={audioName} setAudioName={setAudioName}/>)
     }
   }
 
-  console.log(songs.length);
+  //console.log(songs.length);
 
   return (
     <div style={{backgroundColor: selectedAlbum != "" ? data[selectedAlbum]["bg_color"] : "#080808"}} className="bg-fade w-screen h-screen">

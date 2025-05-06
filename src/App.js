@@ -242,9 +242,11 @@ function App() {
 
     if(audioName != "") {
       if (audioPlaying) {
-        const file = `audio/${parsed_name}.mp3`;
-        audio.current = new Audio(file);
-        audio.current.play();
+        audio.current = new Audio();
+        if ("mp3" in data[selectedAlbum]["songs"][audioName]) {
+          audio.current.src = data[selectedAlbum]["songs"][audioName]["mp3"];
+          audio.current.play();
+        }                
       } else {
         console.log("?");
         audio.current.pause();

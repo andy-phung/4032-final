@@ -5,9 +5,25 @@
         "cd_color": "#0F1F6B",
         "mark_color": "#465BAE",
         "songs": {
-            "": {
-                "members": [],
-                "streams": 0
+            "Shining Diamond": {
+                "members": ["Woozi", "Vernon", "S.Coups"],
+                "streams": 16.3
+            },
+            "Adore U": {
+                "members": ["Woozi", "Vernon", "S.Coups"],
+                "streams": 74.8
+            },
+            "Ah Yeah": {
+                "members": ["S.Coups", "Vernon", "Wonwoo", "Mingyu"],
+                "streams": 9.2
+            },
+            "Jamjam": {
+                "members": ["Woozi", "Hoshi", "Dino"],
+                "streams": 9.7
+            },
+            "20": {
+                "members": ["Woozi"],
+                "streams": 20.8
             }
         }
     },
@@ -17,9 +33,25 @@
         "cd_color": "#BB697E",
         "mark_color": "#4665AE",
         "songs": {
-            "": {
-                "members": [],
-                "streams": 0
+            "Fronting": {
+                "members": ["Woozi", "S.Coups", "Vernon", "Mingyu", "Wonwoo"],
+                "streams": 15.2
+            },
+            "Mansae": {
+                "members": ["Woozi", "Vernon", "S.Coups", "Mingyu", "Wonwoo"],
+                "streams": 77.5
+            },
+            "When I Grow up": {
+                "members": ["Woozi"],
+                "streams": 15.3
+            },
+            "OMG": {
+                "members": ["Woozi", "Dino"],
+                "streams": 9.8
+            },
+            "Rock": {
+                "members": ["Woozi", "Vernon", "S.Coups", "Wonwoo"],
+                "streams": 13.5
             }
         }
     },
@@ -29,9 +61,65 @@
         "cd_color": "#BF668E",
         "mark_color": "#7E3355",
         "songs": {
-            "": {
-                "members": [],
-                "streams": 0
+            "NO F.U.N": {
+                "members": ["Woozi", "Vernon", "S.Coups", "Wonwoo", "Seungkwan", "Hoshi", "Dino"],
+                "streams": 13.3
+            },
+            "VERY NICE": {
+                "members": ["Woozi", "Vernon", "S.Coups"],
+                "streams": 206.2
+            },
+            "Healing": {
+                "members": ["Woozi", "Vernon", "S.Coups", "Mingyu", "Dino"],
+                "streams": 21.9
+            },
+            "SIMPLE": {
+                "members": ["Woozi"],
+                "streams": 21.9
+            },
+            "Space": {
+                "members": ["S.Coups", "Vernon", "Wonwoo", "Mingyu"],
+                "streams": 20
+            },
+            "Chuck": {
+                "members": ["Woozi", "Vernon", "S.Coups", "Wonwoo", "Mingyu", "Dino"],
+                "streams": 10.7
+            },
+            "Pretty U": {
+                "members": ["Woozi", "Vernon", "S.Coups", "Seungkwan"],
+                "streams": 138.1
+            },
+            "Still Lonely": {
+                "members": ["Woozi", "Vernon", "Wonwoo", "Seungkwan", "Hoshi"],
+                "streams": 18.6
+            },
+            "Hit Song": {
+                "members": ["Vernon", "S.Coups", "Mingyu", "Dino"],
+                "streams": 15.5
+            },
+            "Say Yes": {
+                "members": ["Woozi", "Seungkwan", "DK"],
+                "streams": 21.4
+            },
+            "Drift Away": {
+                "members": ["Woozi", "S.Coups", "Seungkwan", "Mingyu", "Hoshi"],
+                "streams": 11.6
+            },
+            "Adore U (Vocal Team Ver.)": {
+                "members": ["Woozi", "Vernon", "S.Coups", "Seungkwan", "DK"],
+                "streams": 12.9
+            },
+            "Monday To Saturday (Hiphop Team Ver.)": {
+                "members": ["S.Coups", "Vernon", "Wonwoo", "Mingyu", "Woozi"],
+                "streams": 9.4
+            },
+            "Shining Diamond (Performance Team Ver.)": {
+                "members": ["Woozi", "Vernon", "S.Coups"],
+                "streams": 5.5
+            },
+            "Love Letter": {
+                "members": ["Woozi", "Vernon", "S.Coups", "Wonwoo", "Mingyu"],
+                "streams": 22
             }
         }
     },
@@ -41,9 +129,37 @@
         "cd_color": "#000000",
         "mark_color": "#545036",
         "songs": {
-            "": {
-                "members": [],
-                "streams": 0
+            "BEAUTIFUL": {
+                "members": ["Woozi", "Mingyu", "Dino"],
+                "streams": 31.9
+            },
+            "BOOMBOOM": {
+                "members": ["Woozi", "Vernon", "S.Coups", "Wonwoo", "Mingyu"],
+                "streams": 60.1
+            },
+            "HIGHLIGHT": {
+                "members": ["Hoshi", "Dino", "Jun", "The8"],
+                "streams": 34.5
+            },
+            "Lean On Me": {
+                "members": ["S.Coups", "Vernon", "Wonwoo", "Mingyu"],
+                "streams": 21.7
+            },
+            "Fast Pace": {
+                "members": ["Woozi", "Vernon", "S.Coups", "Hoshi"],
+                "streams": 28
+            },
+            "Don't listen in secret": {
+                "members": ["Woozi"],
+                "streams": 26.9
+            },
+            "I Don't Know": {
+                "members": ["Woozi", "Vernon", "S.Coups"],
+                "streams": 16.5
+            },
+            "Smile Flower": {
+                "members": ["Woozi"],
+                "streams": 38.3
             }
         }
     },
@@ -53,9 +169,29 @@
         "cd_color": "#9A878A",
         "mark_color": "#654A4E",
         "songs": {
-            "": {
-                "members": [],
-                "streams": 0
+            "Don't Wanna Cry": {
+                "members": ["Woozi", "Vernon", "Hoshi", "Jeonghan"],
+                "streams": 230.4
+            },
+            "Habit": {
+                "members": ["Woozi"],
+                "streams": 34.9
+            },
+            "IF I": {
+                "members": ["S.Coups", "Vernon", "Mingyu"],
+                "streams": 17.1
+            },
+            "Swimming Fool": {
+                "members": ["Woozi", "Vernon", "Dino"],
+                "streams": 19.6
+            },
+            "MY I": {
+                "members": ["Jun", "The8"],
+                "streams": 22.5
+            },
+            "Crazy in Love": {
+                "members": ["Woozi", "Vernon", "S.Coups", "Mingyu"],
+                "streams": 22.9
             }
         }
     },
@@ -66,51 +202,51 @@
         "mark_color": "#711D2A",
         "songs": {
             "Intro. New World": {
-                "members": [],
+                "members": ["Woozi"],
                 "streams": 8.2
             },
             "CHANGE UP": {
-                "members": [],
+                "members": ["Woozi", "S.Coups", "Hoshi"],
                 "streams": 35.1
             },
             "Without You": {
-                "members": [],
+                "members": ["Woozi", "Vernon", "S.Coups", "Jeonghan", "Hoshi", "The8", "Mingyu", "DK", "Dino"],
                 "streams": 16.7
             },
             "CLAP": {
-                "members": [],
+                "members": ["Woozi", "Vernon", "Jeonghan", "Hoshi", "Mingyu", "DK", "Seungkwan"],
                 "streams": 145.1
             },
             "BRING IT": {
-                "members": [],
+                "members": ["Woozi", "Hoshi", "Vernon"],
                 "streams": 16.7
             },
             "Lilili Yabbay": {
-                "members": [],
+                "members": ["Woozi", "Dino"],
                 "streams": 24.5
             },
             "TRAUMA": {
-                "members": [],
+                "members": ["S.Coups", "Vernon", "Wonwoo", "Mingyu"],
                 "streams": 37.8
             },
             "Pinwheel": {
-                "members": [],
+                "members": ["Woozi"],
                 "streams": 42.6
             },
             "Flower": {
-                "members": [],
+                "members": ["S.Coups", "Jeonghan", "Wonwoo", "The8", "Seungkwan", "Dino", "Woozi"],
                 "streams": 21.4
             },
             "ROCKET": {
-                "members": [],
+                "members": ["Vernon", "Joshua", "Woozi"],
                 "streams": 16.3
             },
             "Hello": {
-                "members": [],
+                "members": ["Mingyu", "DK", "Jun"],
                 "streams": 14.8
             },
             "Campfire": {
-                "members": [],
+                "members": ["Woozi", "Vernon", "S.Coups", "Jeonghan", "Wonwoo", "The8", "Mingyu", "DK", "Seungkwan"],
                 "streams": 35.9
             },
             "Outro. Incompletion": {

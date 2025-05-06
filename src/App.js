@@ -234,20 +234,28 @@ function App() {
   const audio = useRef(null);
   const [audioName, setAudioName] = useState("");
   const [audioPlaying, setAudioPlaying] = useState(false);
+  const audioCurrentlyPlaying = useRef(false);
 
   useEffect(() => {
     //console.log(`audio ${audioName}`);
 
     let parsed_name = String(audioName).replaceAll("*", "");
+    let play_promise;
 
     if(audioName != "") {
       if (audioPlaying) {
         audio.current = new Audio();
         if ("mp3" in data[selectedAlbum]["songs"][audioName]) {
           audio.current.src = data[selectedAlbum]["songs"][audioName]["mp3"];
-          audio.current.play();
+          play_promise = audio.current.play()
+
+          if(play_promise !== undefined) {
+            play_promise.then(() => {
+              audioCurrentlyPlaying.current = true;
+            })
+          }
         }                
-      } else {
+      } else if (audioCurrentlyPlaying.current && !audio.current.paused && audio.current.currentTime > 0) {
         audio.current.pause();
         audio.current.currentTime = 0;
       }

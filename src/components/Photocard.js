@@ -22,7 +22,21 @@ function getContrastYIQ(hexcolor) {
 
 function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
-  }
+}
+
+const creditSuffix = (creditNumber) => {
+    if(creditNumber < 4) {
+        if (creditNumber == 1) {
+            return "ST"; 
+        } else if (creditNumber == 2) {
+            return "ND";
+        } else {
+            return "RD";
+        }
+    } else {
+        return "TH";
+    }
+}
 
 const Photocard = (props) => {
 
@@ -32,13 +46,13 @@ const Photocard = (props) => {
     // need to change photocard position based on angular position prob..
     // tbh don't use mouse x and y, just set based on mark position
     return (
-    <div style={{left: props.clientX - 110, top: props.clientY - 75, backgroundColor: props.photocardColor, borderColor: props.bgColor, color: getContrastYIQ(props.photocardColor)}} className={`urbanist-bold h-[160px] border-[4px] rounded-[4px] photocard-aspect-ratio bg-white pointer-events-none absolute z-[3] photocard-transition ${props.memberFocused != "" ? "" : "hidden"} flex flex-col justify-start items-center`}>
-        <img src={`/images/photocards/${props.memberFocused}.jpg`} className="h-[100px] mt-[10px] mb-[1px]"/>
-        <div className="">
+    <div style={{left: props.clientX - 110, top: props.clientY - 75, backgroundColor: props.photocardColor, borderColor: props.bgColor, color: getContrastYIQ(props.photocardColor)}} className={`h-[160px] border-[4px] rounded-[4px] photocard-aspect-ratio bg-white pointer-events-none absolute z-[3] photocard-transition ${props.memberFocused != "" ? "" : "hidden"} flex flex-col justify-start items-center`}>
+        <img src={`/images/photocards/${props.memberFocused}.jpg`} className="h-[100px] mt-[10px] mb-[5.5px]"/>
+        <div className="text-[13px] urbanist-bold">
             {String(props.memberFocused).toUpperCase()}
         </div>
-        <div>
-
+        <div className="text-[8px] urbanist mt-[-3px]">
+            {String(props.creditNumber) + creditSuffix(props.creditNumber)} CREDIT
         </div>
     </div>
     )
